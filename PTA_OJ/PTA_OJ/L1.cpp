@@ -260,6 +260,8 @@
 
 //L1-009 N个分数求和
 
+#include <stdio.h>
+
 typedef struct Ans
 {
 	int num;
@@ -277,4 +279,10 @@ void addFac(int mem, int den)
 	int nden = pret->den * den;
 
 
+}
+
+int main()
+{
+	printf("aaaa");
+	return 0;
 }
