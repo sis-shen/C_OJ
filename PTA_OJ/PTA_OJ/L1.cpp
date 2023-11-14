@@ -153,8 +153,14 @@
 //			int cnt = 0;
 //			int copy = i;
 //			int newbegin = i;
+//			long sum = 1;
 //			while (n % copy == 0)
 //			{
+//				sum *= copy;
+//				if (sum > n || n%sum!=0)
+//				{
+//					break;
+//				}
 //				cnt++;
 //				copy++;
 //			}
@@ -258,31 +264,129 @@
 //}
 
 
-//L1-009 N个分数求和
+//L1-009 N个分数求和    时间超限
+
+//#include <stdio.h>
+//
+//long rnum = 0;
+//long rden = 1;
+//long rmem = 0;
+//
+//void addFac(long mem, long den)
+//{
+//	long nmem = mem * rden + den * rmem;
+//	long nden = rden * den;
+//
+//	while (nmem / nden != 0)
+//	{
+//		//化为真分数
+//		if (nmem > 0)
+//		{
+//			nmem -= nden;
+//			rnum++;
+//		}
+//		else
+//		{
+//			nmem += nden;
+//			rnum--;
+//		}
+//	}
+//	//约分
+//	if (nmem == 0)
+//	{
+//		rnum--;
+//		rmem = 1;
+//		rden = 1;
+//		return;
+//	}
+//	long min = nmem < nden ? nmem : nden;
+//	while (nmem % min != 0 || nden % min != 0)
+//	{
+//		min--;
+//	}
+//	rden = nden / min;
+//	rmem = nmem / min;
+//}
+//
+//int main()
+//{
+//	long N = 0;
+//	scanf("%ld", &N);
+//	long mem = 0;
+//	long den = 0;
+//	scanf("%ld/%ld", &rmem, &rden);
+//	for (int i = 0; i < N - 1; i++)
+//	{
+//		scanf("%ld/%ld", &mem, &den);
+//		addFac(mem, den);
+//	}
+//
+//	while (rmem / rden != 0 )
+//	{
+//		//化为真分数
+//		if (rmem > 0)
+//		{
+//			rmem -= rden;
+//			rnum++;
+//		}
+//		else
+//		{
+//			rmem += rden;
+//			rnum--;
+//		}
+//	}
+//
+//	if (rmem < 0)
+//	{
+//		rnum--;
+//		rmem += rden;
+//	}
+//
+//	if (rnum)
+//	{
+//		printf("%ld", rnum);
+//	}
+//	if (rnum && rmem)
+//	{
+//		printf(" ");
+//	}
+//	if (rmem)
+//	{
+//		printf("%ld/%ld", rmem, rden);
+//	}
+//	return 0;
+//}
+
+
+
+//L1-010 比较大小
 
 #include <stdio.h>
 
-typedef struct Ans
+void Swap(int* a, int* b)
 {
-	int num;
-	int mem;
-	int den;
-}Ans;
-
-Ans ret;
-
-Ans* pret = &ret;
-
-void addFac(int mem, int den)
-{
-	int nmem = pret->mem * den + mem * pret->den;
-	int nden = pret->den * den;
-
-
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 int main()
 {
-	printf("aaaa");
+	int a, b, c;
+	scanf("%d %d %d", &a, &b, &c);
+	if (a > b)
+	{
+		Swap(&a, &b);
+	}
+	if (b > c)
+	{
+		Swap(&b, &c);
+	}
+	if (a > b)
+	{
+		Swap(&a, &b);
+	}
+	printf("%d->%d->%d", a, b, c);
+	
 	return 0;
 }
