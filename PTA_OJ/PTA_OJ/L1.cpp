@@ -361,32 +361,32 @@
 
 //L1-010 比较大小
 
-#include <stdio.h>
-
-void Swap(int* a, int* b)
-{
-	int tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-int main()
-{
-	int a, b, c;
-	scanf("%d %d %d", &a, &b, &c);
-	if (a > b)
-	{
-		Swap(&a, &b);
-	}
-	if (b > c)
-	{
-		Swap(&b, &c);
-	}
-	if (a > b)
-	{
-		Swap(&a, &b);
-	}
-	printf("%d->%d->%d", a, b, c);
-	
-	return 0;
-}
+//#include <stdio.h>
+//
+//void Swap(int* a, int* b)
+//{
+//	int tmp = *a;
+//	*a = *b;
+//	*b = tmp;
+//}
+//
+//int main()
+//{
+//	int a, b, c;
+//	scanf("%d %d %d", &a, &b, &c);
+//	if (a > b)
+//	{
+//		Swap(&a, &b);
+//	}
+//	if (b > c)
+//	{
+//		Swap(&b, &c);
+//	}
+//	if (a > b)
+//	{
+//		Swap(&a, &b);
+//	}
+//	printf("%d->%d->%d", a, b, c);
+//	
+//	return 0;
+//}
