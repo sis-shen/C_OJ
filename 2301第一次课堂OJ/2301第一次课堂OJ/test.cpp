@@ -209,107 +209,107 @@
 //}
 
 //E
-//#include <stdio.h>
-//
-//int is_in_arr(int* arr, int num)
-//{
-//	for (int i = 0; i < 10; i++)
-//	{
-//		if (num == i && arr[i] != 0)
-//		{
-//			return 1;
-//		}
-//	}
-//	return 0;
-//}
-//
-//int is_wrong(int* arr, int num)
-//{
-//	int copy[10] = { 0 };
-//	for (int i = 0; i < 10; i++)
-//	{
-//		copy[i] = arr[i];
-//	}
-//
-//	while (num)
-//	{
-//		int cur = num % 10;
-//		copy[cur]--;
-//		num /= 10;
-//	}
-//	for (int i = 0; i < 10; i++)
-//	{
-//		if (copy[i] != 0)
-//		{
-//			return 1;
-//		}
-//	}
-//	return 0;
-//}
-//
-//int main()
-//{
-//	int str[4] = { 0 };
-//	while (~scanf("%d %d %d %d", str, str + 1, str + 2, str + 3))
-//	{
-//		int arr[10] = { 0 };
-//		for (int i = 0; i < 4; i++)
-//		{
-//			arr[str[i]]++;
-//		}
-//
-//		int flag = 0;
-//		int prev = 0;
-//		for (int i = 1000; i <= 9999; )
-//		{
-//			if (!is_in_arr(arr, i / 1000))
-//			{
-//				flag = 0;
-//				i++;
-//				//i =i/1000*1000+ 1000;
-//				continue;
-//			}
-//			if (!is_in_arr(arr, i / 100 % 10))
-//			{
-//				//i = i/100*100 +  100;
-//				i++;
-//				continue;
-//			}
-//			if (!is_in_arr(arr, i / 10 % 10))
-//			{
-//				i++;
-//				continue;
-//			}
-//			if (!is_in_arr(arr,i % 10))
-//			{
-//				i++;
-//				continue;
-//			}
-//
-//			if (is_wrong(arr,i))
-//			{
-//				i++;
-//				continue;
-//			}
-//
-//			if (prev != 0 && (prev / 1000) != (i / 1000))
-//			{
-//				flag = 0;
-//				printf("\n");
-//			}
-//
-//			if (flag)
-//			{
-//				printf(" ");
-//			}
-//			printf("%d",i);
-//			prev = i;
-//			flag = 1;
-//			i++;
-//		}
-//	}
-//	return 0;
-//}
+#include <stdio.h>
+
+int is_in_arr(int* arr, int num)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		if (num == i && arr[i] != 0)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int is_wrong(int* arr, int num)
+{
+	int copy[10] = { 0 };
+	for (int i = 0; i < 10; i++)
+	{
+		copy[i] = arr[i];
+	}
+
+	while (num)
+	{
+		int cur = num % 10;
+		copy[cur]--;
+		num /= 10;
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		if (copy[i] != 0)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int main()
+{
+	int str[4] = { 0 };
+	while (~scanf("%d %d %d %d", str, str + 1, str + 2, str + 3))
+	{
+		int arr[10] = { 0 };
+		for (int i = 0; i < 4; i++)
+		{
+			arr[str[i]]++;
+		}
+
+		int flag = 0;
+		int prev = 0;
+		for (int i = 1000; i <= 9999; )
+		{
+			if (!is_in_arr(arr, i / 1000))
+			{
+				flag = 0;
+				i++;
+				//i =i/1000*1000+ 1000;
+				continue;
+			}
+			if (!is_in_arr(arr, i / 100 % 10))
+			{
+				//i = i/100*100 +  100;
+				i++;
+				continue;
+			}
+			if (!is_in_arr(arr, i / 10 % 10))
+			{
+				i++;
+				continue;
+			}
+			if (!is_in_arr(arr,i % 10))
+			{
+				i++;
+				continue;
+			}
+
+			if (is_wrong(arr,i))
+			{
+				i++;
+				continue;
+			}
+
+			if (prev != 0 && (prev / 1000) != (i / 1000))
+			{
+				flag = 0;
+				printf("\n");
+			}
+
+			if (flag)
+			{
+				printf(" ");
+			}
+			printf("%d",i);
+			prev = i;
+			flag = 1;
+			i++;
+		}
+	}
+	return 0;
+}
 
 
 

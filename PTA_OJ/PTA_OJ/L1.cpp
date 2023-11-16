@@ -390,3 +390,16 @@
 //	
 //	return 0;
 //}
+
+
+//L1-011 A-B
+#include <stdio.h>
+
+int main()
+{
+	char A[10500] = { 0 };
+	char B[10200] = { 0 };
+	char 
+
+	return 0;
+}
