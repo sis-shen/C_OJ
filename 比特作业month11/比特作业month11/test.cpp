@@ -144,36 +144,52 @@
 //}
 
 //杨辉三角
+//#include <stdio.h>
+//
+//int main()
+//{
+//	long board[50][50] = { 0 };
+//	board[0][0] = 1;
+//	board[1][0] = board[1][1] = 1;
+//	for (int i = 2; i < 50; i++)
+//	{
+//		for (int j = 0; j < 50; j++)
+//		{
+//			if (j == 0 || i == j)
+//			{
+//				board[i][j] = 1;
+//			}
+//			else
+//			{
+//				board[i][j] = board[i - 1][j] + board[i - 1][j - 1];
+//			}
+//		}
+//	}
+//	int n = 0;
+//	scanf("%d", &n);
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j <= i; j++)
+//		{
+//			printf("%d ", board[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+
+
 #include <stdio.h>
+
+
 
 int main()
 {
-	long board[50][50] = { 0 };
-	board[0][0] = 1;
-	board[1][0] = board[1][1] = 1;
-	for (int i = 2; i < 50; i++)
-	{
-		for (int j = 0; j < 50; j++)
-		{
-			if (j == 0 || i == j)
-			{
-				board[i][j] = 1;
-			}
-			else
-			{
-				board[i][j] = board[i - 1][j] + board[i - 1][j - 1];
-			}
-		}
-	}
-	int n = 0;
-	scanf("%d", &n);
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j <= i; j++)
-		{
-			printf("%d ", board[i][j]);
-		}
-		printf("\n");
-	}
+	printf("***********模拟计算器****************\n");
+	printf("0.退出 1.加法 2.减法 3.乘法 4.除法");
+	int input = 0;
+	scanf("%d", &input);
+	printf("请输入两个操作数:");
 	return 0;
 }
