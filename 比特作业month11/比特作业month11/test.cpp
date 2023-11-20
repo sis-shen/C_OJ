@@ -180,16 +180,50 @@
 
 
 
-#include <stdio.h>
-
-
-
-int main()
-{
-	printf("***********模拟计算器****************\n");
-	printf("0.退出 1.加法 2.减法 3.乘法 4.除法");
-	int input = 0;
-	scanf("%d", &input);
-	printf("请输入两个操作数:");
-	return 0;
-}
+//#include <stdio.h>
+//
+//int ADD(int x, int y)
+//{
+//	return x + y;
+//}
+//
+//int SUB(int x, int y)
+//{
+//	return x - y;
+//}
+//
+//int MUL(int x, int y)
+//{
+//	return x * y;
+//}
+//
+//int DIV(int x, int y)
+//{
+//	return x / y;
+//}
+//
+//int main()
+//{
+//	while (1)
+//	{
+//
+//		printf("***********模拟计算器****************\n");
+//		printf("0.退出 1.加法 2.减法 3.乘法 4.除法\n");
+//		int (*plist[])(int, int) = { NULL,ADD,SUB,MUL,DIV };
+//		int input = 0;
+//		scanf("%d", &input);
+//		if (input)
+//		{
+//			int a, b;
+//			printf("请输入两个操作数:");
+//			scanf("%d %d", &a, &b);
+//			printf("%d\n\n", plist[input](a, b));
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//
+//	return 0;
+//}

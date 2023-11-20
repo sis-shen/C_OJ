@@ -392,14 +392,143 @@
 //}
 
 
-//L1-011 A-B
+//L1-012 计算指数
+
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int copy = n;
+//	long sum = 1;
+//	while (copy--)
+//	{
+//		sum *= 2;
+//	}
+//	printf("2^%d = %d",n, sum);
+//	return 0;
+//}
+
+
+//L1-013 计算阶乘和
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int num = 1;
+//	int cnt = 1;
+//	int sum = 0;
+//	int N = 0;
+//	scanf("%d", &N);
+//	for (int i = 0; i < N; i++)
+//	{
+//		sum += num;
+//		cnt++;
+//		num = num * cnt;
+//		
+//	}
+//	printf("%d", sum);
+//	return 0;
+//}
+
+
+//L1-015 跟奥巴马一起画方块
+//#include <stdio.h>
+//
+//int main()
+//{
+//	double n = 0;
+//	char sign = 0;
+//	scanf("%lf %c", &n, &sign);
+//	double num = n;
+//
+//	num /= 2;
+//	num += 0.5;
+//	for (int i = 1; i <= num; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("%c", sign);
+//		}
+//		printf("\n");
+//	}
+//
+//	return 0;
+//}
+
+//L1-016 查验身份证
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int T = 0;
+//	scanf("%d", &T);
+//	int weight[20] = { 7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2 };
+//	char check[] = { '1','0','X','9','8','7','6','5','4','3','2' };
+//	int cnt = 0;
+//
+//	for (int round = 0; round < T; round++)
+//	{
+//		char str[20] = { 0 };
+//		scanf("%s", str);
+//		long sum = 0;
+//		for (int i = 0; i < 17; i++)
+//		{
+//			int cur = str[i] - '0';//取出第i位
+//			sum += weight[i]*cur;
+//		}
+//		sum %= 11;
+//		if (str[17] != check[sum])
+//		{
+//			cnt++;
+//			printf(str);
+//			printf("\n");
+//		}
+//	}
+//	if (cnt == 0)
+//	{
+//		printf("All passed");
+//	}
+//
+//	return 0;
+//}
+
+//L1-017 到底有多二
 #include <stdio.h>
+#include <string.h>
+
 
 int main()
 {
-	char A[10500] = { 0 };
-	char B[10200] = { 0 };
-	char 
+	char str[60] = { 0 };
+	scanf("%s", str);
+	int sz = strlen(str);
+	int cnt_2 = 0;
+	for (int i = 0; i < sz; i++)
+	{
+		if (str[i] == '2')
+		{
+			cnt_2++;
+		}
+	}
 
+	double sign = 1;
+	int digit = sz;
+	if (str[0] == '-')
+	{
+		sign = 1.5;
+		digit--;
+	}
+
+	int even = 1;
+	int num = str[sz - 1] - '0';
+	if (num % 2 == 0)
+	{
+		even = 2;
+	}
+
+	double sum = (double)cnt_2 / (double)digit * sign * even * 100.0;
+	printf("%.2lf%%", sum);
 	return 0;
 }

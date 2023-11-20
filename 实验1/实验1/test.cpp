@@ -83,19 +83,19 @@
 //}
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//	int num = 0;
-//	printf("请输入一个三位数:");
-//	scanf("%d", &num);
-//	int sum = 0;
-//	while (num)
-//	{
-//		sum += num % 10;
-//		num /= 10;
-//	}
-//	printf("各位数之和为:%d", sum);
-//	return 0;
-//}
+#include <stdio.h>
+
+int main()
+{
+	int num = 0;
+	printf("请输入一个三位数:");
+	scanf("%d", &num);
+	int sum = 0;
+	while (num)
+	{
+		sum += num % 10;
+		num /= 10;
+	}
+	printf("各位数之和为:%d", sum);
+	return 0;
+}
