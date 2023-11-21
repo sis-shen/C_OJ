@@ -495,40 +495,123 @@
 //}
 
 //L1-017 到底有多二
+//#include <stdio.h>
+//#include <string.h>
+//
+//
+//int main()
+//{
+//	char str[60] = { 0 };
+//	scanf("%s", str);
+//	int sz = strlen(str);
+//	int cnt_2 = 0;
+//	for (int i = 0; i < sz; i++)
+//	{
+//		if (str[i] == '2')
+//		{
+//			cnt_2++;
+//		}
+//	}
+//
+//	double sign = 1;
+//	int digit = sz;
+//	if (str[0] == '-')
+//	{
+//		sign = 1.5;
+//		digit--;
+//	}
+//
+//	int even = 1;
+//	int num = str[sz - 1] - '0';
+//	if (num % 2 == 0)
+//	{
+//		even = 2;
+//	}
+//
+//	double sum = (double)cnt_2 / (double)digit * sign * even * 100.0;
+//	printf("%.2lf%%", sum);
+//	return 0;
+//}
+
+//L1-025 正整数A+B
 #include <stdio.h>
 #include <string.h>
 
-
-int main()
+int is_OK(char* str, int sz)
 {
-	char str[60] = { 0 };
-	scanf("%s", str);
-	int sz = strlen(str);
-	int cnt_2 = 0;
 	for (int i = 0; i < sz; i++)
 	{
-		if (str[i] == '2')
+		if (str[i] < '0' || str[i] > '9')
 		{
-			cnt_2++;
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int  main()
+{
+	char A[1200] = { 0 };
+	char B[1200] = { 0 };
+	scanf("%s %s", A, B);
+	if (!is_OK(A, strlen(A)))
+	{
+		A[0] = '?';
+		A[1] = '\0';
+	}
+	if (!is_OK(B, strlen(B)))
+	{
+		B[0] = '?';
+		B[1] = '\0';
+	}
+
+	if (A[0] == '?' || B[0] == '?')
+	{
+		printf("%s + %s = ?", A, B);
+	}
+	else
+	{
+		char ret[1200] = { 0 };
+		int curA = strlen(A) - 1;
+		int curB = strlen(B) - 1;
+		int cur = curA > curB ? curA : curB + 1;
+		while(curA >=0 || curB >= 0 && cur>=0)
+		{
+			int flag = 0;
+			if (curA < 0)
+			{
+				ret[cur--] = B[curB--];
+			}
+			else if (curB < 0)
+			{
+				ret[cur--] = A[curA--];
+			}
+			else
+			{
+				int sum = A[curA--] - '0' + B[curB--] - '0' + flag;
+
+				if (sum >= 10)
+				{
+					flag = 1;
+					sum %= 10;
+				}
+				else
+				{
+					flag = 0;
+				}
+				ret[cur--] += sum + '0';
+			}
+
+		}
+		if (ret[0] == 0)
+		{
+			printf("%s + %s = %s", A, B, ret + 1);
+		}
+		else
+		{
+			printf("%s + %s = %s", A, B, ret);
 		}
 	}
 
-	double sign = 1;
-	int digit = sz;
-	if (str[0] == '-')
-	{
-		sign = 1.5;
-		digit--;
-	}
-
-	int even = 1;
-	int num = str[sz - 1] - '0';
-	if (num % 2 == 0)
-	{
-		even = 2;
-	}
-
-	double sum = (double)cnt_2 / (double)digit * sign * even * 100.0;
-	printf("%.2lf%%", sum);
 	return 0;
 }
