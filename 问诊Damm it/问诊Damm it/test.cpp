@@ -115,74 +115,98 @@
 //}
 
 
-#include<stdio.h>
-#include<string.h>
-int is_prime(int n)//是素数返回1
+//#include<stdio.h>
+//#include<string.h>
+//int is_prime(int n)//是素数返回1
+//{
+//	int i, flag = 1;
+//	if (n == 1 || n==0)
+//	{
+//		flag = 0;
+//	}
+//	if (n == 2)
+//	{
+//		flag = 1;
+//	}
+//	if (n > 2)
+//	{
+//		for (i = 2; i < n; i++)
+//		{
+//			if (n % i == 0)
+//			{
+//				flag = 0;
+//				break;
+//			}
+//		}
+//	}
+//	return flag;
+//}
+//int main()
+//{
+//	char ch[1004] = { 0 };
+//	while (~scanf("%s", &ch))
+//	{
+//		int n, flag = 1;
+//		for (int i = 0; i < strlen(ch); i += 3)
+//		{
+//			if (ch[i + 1] != '\0' && ch[i + 2] != '\0')
+//			{
+//				int m = ch[i] - '0', p = ch[i + 1] - '0', k = ch[i + 2] - '0';
+//				n = 100 * m + 10 * p + k;
+//				if (is_prime(n) == 0)
+//				{
+//					flag = 0;
+//					break;
+//				}
+//			}
+//			else if ( ch[i + 2] == '\0' && ch[i+1] != '\0')
+//			{
+//				int m = ch[i] - '0', p = ch[i + 1] - '0';
+//				n = 10 * m + p;
+//				if (is_prime(n) == 0)
+//				{
+//					flag = 0;
+//					break;
+//				}
+//			}
+//			 else if (ch[i + 1] == '\0')
+//			{
+//				n = ch[i] - '0';
+//				if (is_prime(n) == 0)
+//				{
+//					flag = 0;
+//					break;
+//				}
+//			}
+//		}
+//		if (flag == 0)
+//			printf("NO\n");
+//		else
+//			printf("YES\n");
+//	}
+//	return 0;
+//}
+
+
+
+#include <stdio.h>
+
+typedef struct Stu
 {
-	int i, flag = 1;
-	if (n == 1 || n==0)
-	{
-		flag = 0;
-	}
-	if (n == 2)
-	{
-		flag = 1;
-	}
-	if (n > 2)
-	{
-		for (i = 2; i < n; i++)
-		{
-			if (n % i == 0)
-			{
-				flag = 0;
-				break;
-			}
-		}
-	}
-	return flag;
-}
+	int id;
+	char name[20];
+	int score;
+}Stu;
+
+
 int main()
 {
-	char ch[1004] = { 0 };
-	while (~scanf("%s", &ch))
-	{
-		int n, flag = 1;
-		for (int i = 0; i < strlen(ch); i += 3)
-		{
-			if (ch[i + 1] != '\0' && ch[i + 2] != '\0')
-			{
-				int m = ch[i] - '0', p = ch[i + 1] - '0', k = ch[i + 2] - '0';
-				n = 100 * m + 10 * p + k;
-				if (is_prime(n) == 0)
-				{
-					flag = 0;
-					break;
-				}
-			}
-			else if ( ch[i + 2] == '\0' && ch[i+1] != '\0')
-			{
-				int m = ch[i] - '0', p = ch[i + 1] - '0';
-				n = 10 * m + p;
-				if (is_prime(n) == 0)
-				{
-					flag = 0;
-					break;
-				}
-			}
-			 else if (ch[i + 1] == '\0')
-			{
-				n = ch[i] - '0';
-				if (is_prime(n) == 0)
-				{
-					flag = 0;
-					break;
-				}
-			}
-		}
-		if (flag == 0)
-			printf("NO\n");
-		else
-			printf("YES\n");
-	}
+	Stu stu;
+	Stu* ps = &stu;
+
+	stu.id = 250;
+	ps->name[0] = 'A';
+	(*ps).score = 0;
+
 	return 0;
 }

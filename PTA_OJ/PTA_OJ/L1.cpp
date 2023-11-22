@@ -539,6 +539,18 @@
 
 int is_OK(char* str, int sz)
 {
+	if (sz > 4) return 0;
+	if (str[0] > '1' && sz == 4) return 0;
+	if (str[0] == '1' && sz == 4)
+	{
+		for (int i = 1; i < 4; i++)
+		{
+			if (str[i] > '0')return 0;
+		}
+	}
+
+	if (str[0] == '0') return 0;
+
 	for (int i = 0; i < sz; i++)
 	{
 		if (str[i] < '0' || str[i] > '9')
@@ -551,9 +563,12 @@ int is_OK(char* str, int sz)
 
 int  main()
 {
+
+	char str[2000] = { 0 };
+
+
 	char A[1200] = { 0 };
 	char B[1200] = { 0 };
-	scanf("%s %s", A, B);
 	if (!is_OK(A, strlen(A)))
 	{
 		A[0] = '?';
@@ -574,22 +589,24 @@ int  main()
 		char ret[1200] = { 0 };
 		int curA = strlen(A) - 1;
 		int curB = strlen(B) - 1;
-		int cur = curA > curB ? curA : curB + 1;
+		int cur = (curA > curB ? curA : curB) + 1;
+		int flag = 0;
+
 		while(curA >=0 || curB >= 0 && cur>=0)
 		{
-			int flag = 0;
+			int sum = 0;
 			if (curA < 0)
 			{
-				ret[cur--] = B[curB--];
+				sum = B[curB--]-'0' + flag;
 			}
 			else if (curB < 0)
 			{
-				ret[cur--] = A[curA--];
+				sum = A[curA--]-'0' + flag;
 			}
 			else
 			{
-				int sum = A[curA--] - '0' + B[curB--] - '0' + flag;
-
+				sum = A[curA--] - '0' + B[curB--] - '0' + flag;
+			}
 				if (sum >= 10)
 				{
 					flag = 1;
@@ -599,9 +616,11 @@ int  main()
 				{
 					flag = 0;
 				}
-				ret[cur--] += sum + '0';
-			}
-
+				ret[cur--] = sum + '0';
+		}
+		if (flag)
+		{
+			ret[0] = '1';
 		}
 		if (ret[0] == 0)
 		{

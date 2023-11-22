@@ -143,17 +143,53 @@ void HeapSort(DataType* arr, int sz)
 {
 	//升序-大堆
 	// 降序-小堆 
-	//向上调整建堆
-	for (int i = 0; i < sz; i++)
-	{  
-		AdjustUp(arr, i);
+	//向上调整建堆 - 时间复杂度为 O(NlogN)
+	//for (int i = 0; i < sz; i++)
+	//{  
+	//	AdjustUp(arr, i);
+	//}
+
+	//向下调整建堆 时间复杂度为O(N)
+	for (int i = (sz - 1 - 1) / 2; i >= 0; i--)
+	{
+		AdjustDown(arr, sz, i);
 	}
 
 	int end = sz - 1;
-	while ()
+	while (end>0)
 	{
 		Swap(&arr[0], &arr[end]);
+		//再次调整，选出最小数
 		AdjustDown(arr, end, 0);
 		end--;
+	}
+}
+
+void printTopK(int* arr, int sz, int k)
+{
+	int* dui = (int*)malloc(sizeof(int) * k);
+	for (int i = 0; i < k; i++)
+	{
+		dui[i] = arr[i];
+	}
+
+	//建小堆
+	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
+	{
+		AdjustDown(dui, k, i);
+	}
+
+	for (int i = k; i < sz; i++)
+	{
+		if (arr[i] > dui[0])
+		{
+			dui[0] = arr[i];
+			AdjustDown(dui, k, 0);
+		}
+	}
+
+	for (int i = 0; i < k; i++)
+	{
+		printf("%d ", dui[i]);
 	}
 }

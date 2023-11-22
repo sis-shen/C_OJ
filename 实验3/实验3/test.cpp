@@ -101,12 +101,5 @@
 //	return 0;
 //}
 
-//¿­ÈöÃÜÂë¼ÓÃÜ
+//¿­ÈöÃÜÂë¼ÓÃÜ - ¼ûClion
 
-#include <stdio.h>
-
-int main()
-{
-
-	return 0;
-}

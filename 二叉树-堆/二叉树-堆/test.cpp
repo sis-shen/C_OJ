@@ -14,5 +14,7 @@ int main()
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	HeapSort(arr, sz);
 
+	printTopK(arr, sz, 3);
+
 	return 0;
 }

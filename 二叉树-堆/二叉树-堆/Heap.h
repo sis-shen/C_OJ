@@ -21,3 +21,5 @@ DataType HeapTop(HP* php);
 bool HeapEmpty(HP* php);
 
 void HeapSort(DataType*arr , int sz);
+
+void printTopK(int* arr, int sz, int k);
