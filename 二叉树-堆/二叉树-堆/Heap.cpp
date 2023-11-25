@@ -193,3 +193,4 @@ void printTopK(int* arr, int sz, int k)
 		printf("%d ", dui[i]);
 	}
 }
+

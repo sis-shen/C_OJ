@@ -189,24 +189,78 @@
 
 
 
+//#include <stdio.h>
+//
+//typedef struct Stu
+//{
+//	int id;
+//	char name[20];
+//	int score;
+//}Stu;
+//
+//
+//int main()
+//{
+//	Stu stu;
+//	Stu* ps = &stu;
+//
+//	stu.id = 250;
+//	ps->name[0] = 'A';
+//	(*ps).score = 0;
+//
+//	return 0;
+//}
+
+
 #include <stdio.h>
-
-typedef struct Stu
+void swap(int* x, int* y)
 {
-	int id;
-	char name[20];
-	int score;
-}Stu;
-
-
+	int t = *x;
+	*x = *y;
+	*y = t;
+}
 int main()
 {
-	Stu stu;
-	Stu* ps = &stu;
+	int n;
+	int s[100] = { 0 };
+	int b[100] = { 0 };
+	while (scanf("%d", &n) != EOF)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			scanf("%d", &s[i]);
+		}
+		for (int l = 0; l < n; l++)
+		{
+			s[l] = b[l];
+		}
 
-	stu.id = 250;
-	ps->name[0] = 'A';
-	(*ps).score = 0;
+		for (int z = 0; z < n; z++)
+		{
 
+			for (int j = 0; j < n - 1; j++)
+			{
+				if (s[j] > s[j + 1])
+				{
+					swap(&s[j], &s[j + 1]);
+				}
+			}
+		}
+
+		if (s[0] != s[1])
+		{
+			for (int k = 0; k < n; k++)
+			{
+				if (b[k] == s[0])
+				{
+					printf("%d\n", k + 1);
+				}
+			}
+		}
+		if (s[0] == s[1])
+		{
+			printf("Fail\n");
+		}
+	}
 	return 0;
 }
