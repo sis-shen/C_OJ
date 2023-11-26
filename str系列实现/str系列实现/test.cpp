@@ -107,13 +107,61 @@ char* my_strncpy(char* dest, const char* src, size_t num)
 	return  ret;
 }
 
+char* my_strncat(char* dest, const char* src, size_t  num)
+{
+	char* copy = dest;
+	while (*dest != '\0')
+	{
+		dest++;
+	}
+	while (num && (*dest++ = *src++))
+	{
+		num--;
+	}
+	*dest = '\0';
+	return copy;
+}
+
+void* my_memcpy(void* dest, void* src, size_t num)
+{
+	void* ret = dest;
+	while (num--)
+	{
+		*(char*)dest = *(char*)src;
+		dest = (char*)dest + 1;
+		src = (char*)src + 1;
+	}
+	return ret;
+}
+
+void* my_memmove(void* dest, void* src, size_t num)
+{
+	void* ret = dest;
+	if (dest <= src)
+	{
+		while (num--)
+		{
+			*(char*)dest = *(char*)src;
+			dest = (char*)dest + 1;
+			src = (char*)src + 1;
+		}
+	}
+	else
+	{
+		while (num--)
+		{
+			*((char*)dest + num) = *((char*)src + num);
+		}
+	}
+	return ret;
+}
+
 int main()
 {
-	char str[] = "cake";
-	char str2[10] = { 1,1,1,1,1,1,1,1,1,1 };
-	char str3[10] = { 0 };
-	my_strncpy(str2, str, 8);
-	my_strncpy(str3, str, 2);
-
+	char str[] = "I have a knife";
+	char str2[50] = { 0 };
+	my_strcpy(str2, str);
+	my_memmove(str2 + 9, str2 + 7,7);
+	printf(str2);
 	return 0;
 }
