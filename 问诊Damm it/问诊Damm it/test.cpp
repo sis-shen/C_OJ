@@ -264,3 +264,12 @@ int main()
 	}
 	return 0;
 }
+
+
+typedef struct Stu
+{
+	int a;
+}Stu;
+
+Stu arr[100];
+

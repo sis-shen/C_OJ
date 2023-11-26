@@ -227,3 +227,13 @@
 //
 //	return 0;
 //}
+
+
+
+
+int Juge(void)
+{
+	int a = 1;
+	char* p = (char*)&a;
+	return *p;
+}

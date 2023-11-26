@@ -47,7 +47,7 @@ int my_strcmp(const char* str1, const char* str2)
 {
 	while (*str1++ == *str2++)
 	{
-		0if (!(*str1 && *str2))
+		if (!(*str1 && *str2))
 		{
 			break;
 		}
@@ -92,14 +92,28 @@ char* my_strstr(const char* str1, const char* str2)
 }
 
 
-
-
-
-
+char* my_strncpy(char* dest, const char* src, size_t num)
+{
+	char* ret = dest;
+	while (num &&  (*dest++ = *src++))
+	{
+		num--;
+	}
+	while (num)
+	{
+		*dest++ = '\0';
+		num--;
+	}
+	return  ret;
+}
 
 int main()
 {
-
+	char str[] = "cake";
+	char str2[10] = { 1,1,1,1,1,1,1,1,1,1 };
+	char str3[10] = { 0 };
+	my_strncpy(str2, str, 8);
+	my_strncpy(str3, str, 2);
 
 	return 0;
 }
