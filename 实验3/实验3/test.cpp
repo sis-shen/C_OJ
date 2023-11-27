@@ -46,6 +46,7 @@
 //	char sign1 = 0;
 //	char sign2 = 0;
 //	double num1, num2, num3;
+//	printf("请输入表达式: ");
 //	scanf("%lf%c%lf%c%lf", &num1, &sign1, &num2, &sign2, &num3);
 //
 //	double sum = num1;
@@ -60,35 +61,35 @@
 //	else if (sign2 == '*') sum *= num3;
 //	else if (sign2 == '/') sum /= num3;
 //	
-//	printf("表达式的值为: %.1lf", sum);
-//
+//	printf("表达式的值为: %.1lf\n\n", sum);
+//	main();
 //	return 0;
 //}
 
 
 //牛顿法
 
-//#include <stdio.h>
-//#include <math.h>
-//
-//int main()
-//{
-//	double y = 1;
-//	double x = 0;
-//	printf("请输入一个正数: ");
-//	scanf("%lf", &x);
-//	double prev = y;
-//
-//	y = (y + x / y) / 2.0;
-//	while (fabs(prev - y) >= 0.00001)
-//	{
-//		prev = y;
-//		y = (y + x / y) / 2.0;
-//
-//	}
-//	printf("平方根为: %lf", y);
-//	return 0;
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	double y = 1;
+	double x = 0;
+	printf("请输入一个正数: ");
+	scanf("%lf", &x);
+	double prev = y;
+
+	y = (y + x / y) / 2.0;
+	while (fabs(prev - y) >= 0.00001)
+	{
+		prev = y;
+		y = (y + x / y) / 2.0;
+
+	}
+	printf("平方根为: %lf", y);
+	return 0;
+}
 
 
 //编写程序颠倒句?中单词的顺序 详见Clion

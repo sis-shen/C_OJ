@@ -37,6 +37,8 @@
 //			printf("-%s", arr1[num % 10]);
 //		}
 //	}
+//	printf("\n");
+//	main();
 //	return 0;
 //}
 
@@ -49,7 +51,7 @@
 //	int begin = 0;
 //	printf("请输入这个月有几天： ");
 //	scanf("%d", &month);
-//	printf("请输入本月从星期几开始： ");
+//	printf("请输入本月从星期几开始(1=星期一，7=星期天)： ");
 //	scanf("%d", &begin);
 //
 //	int day = 0;
@@ -98,41 +100,42 @@
 //}
 
 //完数
-//#include <stdio.h>
-//#include <math.h>
-//
-//int Sum(int num)
-//{
-//	int sum = 1;
-//	{
-//		for (int i = 2; i <= sqrt(num); i++)
-//		{
-//			if (num % i == 0)
-//			{
-//				sum += i + num / i;
-//			}
-//			if (i == sqrt(num))
-//			{
-//				sum -= (int)sqrt(num);
-//			}
-//		}
-//
-//	}
-//	return sum;
-//}
-//
-//int main()
-//{
-//	for (int i = 2; i <= 5000; i++)
-//	{
-//		if (i == Sum(i))
-//		{
-//			printf("%d ", i);
-//		}
-//	}
-//
-//	return 0;
-//}
+#include <stdio.h>
+#include <math.h>
+
+int Sum(int num)
+{
+	int sum = 1;
+	{
+		for (int i = 2; i <= sqrt(num); i++)
+		{
+			if (num % i == 0)
+			{
+				sum += i + num / i;
+			}
+			if (i == sqrt(num))
+			{
+				sum -= (int)sqrt(num);
+			}
+		}
+
+	}
+	return sum;
+}
+
+int main()
+{
+	printf("完数有： ");
+	for (int i = 2; i <= 5000; i++)
+	{
+		if (i == Sum(i))
+		{
+			printf("%d ", i);
+		}
+	}
+
+	return 0;
+}
 
 
 //
