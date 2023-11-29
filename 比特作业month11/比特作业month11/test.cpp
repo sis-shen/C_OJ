@@ -229,11 +229,29 @@
 //}
 
 
-
+#include <stdio.h>
 
 int Juge(void)
 {
 	int a = 1;
 	char* p = (char*)&a;
 	return *p;
+}
+
+
+int my_atoi(const char* str)
+{
+	int sum = 0;
+	while (*str != '\0')
+	{
+		sum = sum * 10 + (*str) - '0';
+		str++;
+	}
+	return sum;
+}
+
+int main()
+{
+	printf("%d", my_atoi("123456"));
+	return 0;
 }

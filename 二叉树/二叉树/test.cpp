@@ -2,12 +2,9 @@
 #include <stdio.h>
 #include <assert.h>
 
-typedef struct BTNode
-{
-	BTNode* left;
-	BTNode* right;
-	int data;
-}BTNode;
+#include "Queue.h"
+
+
 
 BTNode* BuyNode(int data)
 {
@@ -42,6 +39,7 @@ BTNode* CreateBTree(void)
 	node6->left = node8;
 	node6->right = node9;
 
+	return node1;
 }
 
 
@@ -90,13 +88,91 @@ int BTreeHeight(BTNode* root)
 
 }
 
+int BTreeLevelKSize(BTNode* root, int k)
+{
+	if (k < 1)
+	{
+		return 0;
+	}
+	if (k == 1 && root!=NULL)
+	{
+		return 1;
+	}
+	else if (root == NULL)
+	{
+		return 0;
+	}
 
+	return BTreeLevelKSize(root->left, k - 1) + BTreeLevelKSize(root->right, k - 1);
+}
 
+//二叉树查找值为x的节点
+BTNode* BTreeFind(BTNode* root, int x)
+{
+	if (root == NULL)
+	{
+		return NULL;
+	}
+	if (root->data == x)
+	{
+		return root;
+	}
+	else
+	{
+		BTNode* p1 = BTreeFind(root->left,x);
+		if (p1 != NULL)
+		{
+			return p1;
+		}
+		BTNode* p2 = BTreeFind(root->right, x);
+		if (p2 != NULL)
+		{
+			return p2;
+		}
 
+		return NULL;
+	}
+}
 
+//用队列实现层序遍历
+
+void LevelOrder(BTNode* BTroot)
+{
+	Queue pq;
+	QueueInit(&pq);
+
+	QueuePush(&pq, BTroot);
+
+	while (!QueueEmpty(&pq))
+	{
+		BTNode* root = QueueFront(&pq);
+		printf("%d ", root->data);
+		QueuePop(&pq);
+
+		if (root->left)
+		{
+			QueuePush(&pq, root->left);
+		}
+		if (root->right)
+		{
+			QueuePush(&pq, root->right);
+		}
+	}
+	QueueDestroy(&pq);
+}
 
 
 int main()
 {
+	BTNode* pBT = CreateBTree();
+	printf("高度: %d\n", BTreeHeight(pBT));
+	printf("总节点数: %d\n", BTressSize(pBT));
+	printf("第三层:%d\n", BTreeLevelKSize(pBT, 3));
+
+	printf("%p\n", BTreeFind(pBT, 10));
+	printf("%p\n", BTreeFind(pBT, 5));
+
+	printf("层序: ");
+	LevelOrder(pBT);
 	return 0;
 }
