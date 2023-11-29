@@ -161,6 +161,19 @@ void LevelOrder(BTNode* BTroot)
 	QueueDestroy(&pq);
 }
 
+//Ê÷µÄÏú»Ù
+void BTDestroy(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return;
+	}
+
+	BTDestroy(root->left);
+	BTDestroy(root->right);
+
+	free(root);
+}
 
 int main()
 {

@@ -212,64 +212,189 @@
 //}
 
 
-#include <stdio.h>
-void swap(int* x, int* y)
+//#include <stdio.h>
+//void swap(int* x, int* y)
+//{
+//	int t = *x;
+//	*x = *y;
+//	*y = t;
+//}
+//int main()
+//{
+//	int n;
+//	int s[100] = { 0 };
+//	int b[100] = { 0 };
+//	while (scanf("%d", &n) != EOF)
+//	{
+//		for (int i = 0; i < n; i++)
+//		{
+//			scanf("%d", &s[i]);
+//		}
+//		for (int l = 0; l < n; l++)
+//		{
+//			s[l] = b[l];
+//		}
+//
+//		for (int z = 0; z < n; z++)
+//		{
+//
+//			for (int j = 0; j < n - 1; j++)
+//			{
+//				if (s[j] > s[j + 1])
+//				{
+//					swap(&s[j], &s[j + 1]);
+//				}
+//			}
+//		}
+//
+//		if (s[0] != s[1])
+//		{
+//			for (int k = 0; k < n; k++)
+//			{
+//				if (b[k] == s[0])
+//				{
+//					printf("%d\n", k + 1);
+//				}
+//			}
+//		}
+//		if (s[0] == s[1])
+//		{
+//			printf("Fail\n");
+//		}
+//	}
+//	return 0;
+//}
+//
+//
+//typedef struct Stu
+//{
+//	int a;
+//}Stu;
+//
+//Stu arr[100];
+//
+
+
+
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+#include<stdbool.h>
+#include<string.h>
+
+typedef int STDataType;
+typedef struct Stack
 {
-	int t = *x;
-	*x = *y;
-	*y = t;
+	STDataType* a;
+	int top;
+	int capacity;
+}ST;
+
+void StackInit(ST* ps)
+{
+	assert(ps);
+	ps->a = NULL;
+	ps->top = 0;
+	ps->capacity = 0;
+}
+
+void StackPush(ST* ps, STDataType x)
+{
+	assert(ps);
+	if (ps->top == ps->capacity)
+	{
+		int newCapacity = (ps->capacity == 0 ? 4 : ps->capacity * 2);
+		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * newCapacity);
+		if (tmp == NULL)
+		{
+			exit(-1);
+		}
+		ps->a = tmp;
+		ps->capacity = newCapacity;
+	}
+	ps->a[ps->top] = x;
+	(ps->top)++;
+}
+
+void StackPop(ST* ps)
+{
+	assert(ps);
+	assert(ps->top > 0);
+
+	ps->top--;
+	if (ps->top == -1)
+	{
+		printf("Not enough operands inexpression");
+		exit(-1);
+	}
+}
+
+STDataType StackTop(ST* ps)
+{
+	assert(ps);
+	return ps->a[ps->top - 1];
 }
 int main()
 {
-	int n;
-	int s[100] = { 0 };
-	int b[100] = { 0 };
-	while (scanf("%d", &n) != EOF)
+	ST st;
+	StackInit(&st);
+	char ch;
+	printf("Enter an RPN expression:");
+	while (scanf(" %c", &ch) != EOF)
 	{
-		for (int i = 0; i < n; i++)
-		{
-			scanf("%d", &s[i]);
-		}
-		for (int l = 0; l < n; l++)
-		{
-			s[l] = b[l];
-		}
-
-		for (int z = 0; z < n; z++)
+		int num = 0;
+		if ((ch >= '0' && ch <= '9') || ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '=')
 		{
 
-			for (int j = 0; j < n - 1; j++)
+			if (ch >= '0' && ch <= '9')
 			{
-				if (s[j] > s[j + 1])
+				StackPush(&st, ch - '0');
+			}
+			else if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+			{
+
+				int num1 = StackTop(&st);
+				StackPop(&st);
+				int num2 = StackTop(&st);
+				StackPop(&st);
+				switch (ch)
 				{
-					swap(&s[j], &s[j + 1]);
+				case'+':
+					num = num1 + num2;
+					break;
+				case'-':
+					num = num2 - num1;
+					break;
+				case'*':
+					num = num1 * num2;
+					break;
+				case'/':
+					num = num2 / num1;
+					break;
+
 				}
+				StackPush(&st, num);
+			}
+			else if (ch == '=')
+			{
+				if (st.top > 0);
+				{
+					printf("Expression is too complex");
+					exit(-1);
+				}
+				printf("Value of expression:%d\n", StackTop(&st));
+				StackPop(&st);
+				StackInit(&st);
+				printf("Enter an RPN expression:");
 			}
 		}
-
-		if (s[0] != s[1])
-		{
-			for (int k = 0; k < n; k++)
-			{
-				if (b[k] == s[0])
-				{
-					printf("%d\n", k + 1);
-				}
-			}
-		}
-		if (s[0] == s[1])
-		{
-			printf("Fail\n");
-		}
+		else
+			break;
 	}
+
 	return 0;
 }
-
-
-typedef struct Stu
-{
-	int a;
-}Stu;
-
-Stu arr[100];
-

@@ -86,8 +86,8 @@ void STPush(ST* pst, int x)
 {
 	if (pst->sz == pst->capacity)
 	{
-		printf("Expression is toocomplex");
-		return;
+		printf("Expression is toocomplex\n");
+		exit(-1);
 	}
 	pst->arr[pst->sz] = x;
 	pst->sz++;
@@ -98,7 +98,7 @@ void STPop(ST* pst)
 	if (pst->sz == 0)
 	{
 		printf("Not enough operands in expression\n");
-		return;
+		exit(-1);
 	}
 
 	pst->sz--;
@@ -115,77 +115,77 @@ void STClear(ST* pst)
 }
 
 
-//int arr[10] = { 0 };
-//
-//int main()
-//{
-//	ST* pst = (ST*)malloc(10 * sizeof(ST));
-//	pst->sz = 0;
-//	pst->capacity = 10;
-//	pst->arr = arr;
-//
-//	char ch = 0;
-//
-//	printf("请输入表达式: ");
-//	scanf(" %c", &ch);
-//	while (ch != 'q')
-//	{
-//		if ('0' <= ch && ch <= '9')
-//		{
-//			STPush(pst, ch - '0');
-//		}
-//		else if (ch == '+')
-//		{
-//			int num1 = STTop(pst);
-//			STPop(pst);
-//			int num2 = STTop(pst);
-//			STPop(pst);
-//			int ret = num1 + num2;
-//			STPush(pst, ret);
-//		}
-//		else if (ch == '-')
-//		{
-//			int num1 = STTop(pst);
-//			STPop(pst);
-//			int num2 = STTop(pst);
-//			STPop(pst);
-//			int ret = num2 - num1;
-//			STPush(pst, ret);
-//		}
-//		else if (ch == '*')
-//		{
-//			int num1 = STTop(pst);
-//			STPop(pst);
-//			int num2 = STTop(pst);
-//			STPop(pst);
-//			int ret = num1 * num2;
-//			STPush(pst, ret);
-//		}
-//		else if (ch == '/')
-//		{
-//			int num1 = STTop(pst);
-//			STPop(pst);
-//			int num2 = STTop(pst);
-//			STPop(pst);
-//			int ret = num2 / num1;
-//			STPush(pst, ret);
-//		}
-//		else if (ch == '=')
-//		{
-//			printf("表达式的值为： %d\n", STTop(pst));
-//			STClear(pst);
-//			printf("请输入表达式: ");
-//		}
-//		scanf(" %c", &ch);
-//
-//	}
-//
-//
-//
-//	free(pst);
-//	pst = NULL;
-//	return 0;
-//}
+int arr[10] = { 0 };
+
+int main()
+{
+	ST* pst = (ST*)malloc(10 * sizeof(ST));
+	pst->sz = 0;
+	pst->capacity = 10;
+	pst->arr = arr;
+
+	char ch = 0;
+
+	printf("请输入表达式: ");
+	scanf(" %c", &ch);
+	while (ch != 'q')
+	{
+		if ('0' <= ch && ch <= '9')
+		{
+			STPush(pst, ch - '0');
+		}
+		else if (ch == '+')
+		{
+			int num1 = STTop(pst);
+			STPop(pst);
+			int num2 = STTop(pst);
+			STPop(pst);
+			int ret = num1 + num2;
+			STPush(pst, ret);
+		}
+		else if (ch == '-')
+		{
+			int num1 = STTop(pst);
+			STPop(pst);
+			int num2 = STTop(pst);
+			STPop(pst);
+			int ret = num2 - num1;
+			STPush(pst, ret);
+		}
+		else if (ch == '*')
+		{
+			int num1 = STTop(pst);
+			STPop(pst);
+			int num2 = STTop(pst);
+			STPop(pst);
+			int ret = num1 * num2;
+			STPush(pst, ret);
+		}
+		else if (ch == '/')
+		{
+			int num1 = STTop(pst);
+			STPop(pst);
+			int num2 = STTop(pst);
+			STPop(pst);
+			int ret = num2 / num1;
+			STPush(pst, ret);
+		}
+		else if (ch == '=')
+		{
+			printf("表达式的值为： %d\n", STTop(pst));
+			STClear(pst);
+			printf("请输入表达式: ");
+		}
+		scanf(" %c", &ch);
+
+	}
+
+
+
+	free(pst);
+	pst = NULL;
+	return 0;
+}
 
 //=================
 
