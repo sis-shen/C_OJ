@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include "stack.h"
+
 
 void InsertSort(int* arr, int sz);
 
@@ -14,3 +16,7 @@ void BubbleSort(int *arr, int sz);
 void SelectSort(int* arr, int sz);
 
 void HeapSort(int* arr, int sz);
+
+void QuickSort(int*arr, int left, int right)  ;
+
+void QuickSortNornR(int* a, int begin, int end);

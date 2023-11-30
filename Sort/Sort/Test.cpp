@@ -39,30 +39,45 @@ void TestBubbleSort()
 	PrintArray(arr, sz);
 }
 
+void TestQuickSort()
+{
+	int arr[] = { 1,6,8,7,5,4,6,9,10,3,2 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	PrintArray(arr, sz);
+	QuickSort(arr,0,sz-1);
+	PrintArray(arr, sz);
+}
+
+
+
 void TestOp()
 {
 	srand((unsigned)time(0));
 
-	const int N = 100000;
+	const int N = 1000000;
 
 	int* a1 = (int*)malloc(sizeof(int) * N);
 	int* a2 = (int*)malloc(sizeof(int) * N);
 	int* a3 = (int*)malloc(sizeof(int) * N);
 	int* a4 = (int*)malloc(sizeof(int) * N);
 	int* a5 = (int*)malloc(sizeof(int) * N);
+	int* a6 = (int*)malloc(sizeof(int) * N);
+
 
 	for (int i = 0; i < N; i++)
 	{
-		a1[i] = rand() % 1000000;
+		a1[i] = rand();
 		a2[i] = a1[i];
 		a3[i] = a1[i];
 		a4[i] = a1[i];
 		a5[i] = a1[i];
+		a6[i] = a1[i];
+
 
 	}
 
 	int begin1 = clock();
-	InsertSort(a1, N);
+	//InsertSort(a1, N);
 	int end1 = clock();
 	
 	int begin2 = clock();
@@ -81,12 +96,16 @@ void TestOp()
 	HeapSort(a5, N);
 	int end5 = clock();
 
+	int begin6 = clock();
+	QuickSort(a6, 0, N - 1);
+	int end6 = clock();
+
 	printf("Insert: %d\n", -begin1 + end1);
 	printf("Shell: %d\n", -begin2 + end2);
 	printf("Bubble: %d\n", -begin3 + end3);
 	printf("Select: %d\n", end4 - begin4);
 	printf("Heap: %d\n", end5 - begin5);
-
+	printf("Quick: %d\n", end6 - begin6);
 
 
 
@@ -95,13 +114,14 @@ void TestOp()
 	free(a3);
 	free(a4);
 	free(a5);
+	free(a6);
 
 
 }
 
 int main()
 {
-
+	TestQuickSort();
 	TestOp();
 	return 0;
 }

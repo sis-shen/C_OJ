@@ -172,7 +172,13 @@ void BTDestroy(BTNode* root)
 	BTDestroy(root->left);
 	BTDestroy(root->right);
 
-	free(root);
+	free(root); 
+}     
+
+//检查是否时完全二叉树
+int isComleteBT(BTNode* root)
+{
+
 }
 
 int main()

@@ -381,7 +381,8 @@ int main()
 			}
 			else if (ch == '=')
 			{
-				if (st.top > 0);
+
+				if (st.top > 1);
 				{
 					printf("Expression is too complex");
 					exit(-1);

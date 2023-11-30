@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 
 #include "sort.h"
+#include "stack.h"
 
 void Swap(int* a, int* b)
 {
@@ -40,7 +41,10 @@ void ShellSort(int *arr, int sz)
 	int gap = sz;
 	while (gap > 1)
 	{
-		gap = gap / 3 + 1;//+1可以保证最后一波 gap = 1
+		//gap>1 预排序
+		//gap = 1,插入排序
+
+		gap = gap / 3 + 1;//+1可以保证最后一波 gap = 1,
 
 		for (int i = 0; i < sz-gap; i++)
 		{
@@ -174,5 +178,165 @@ void HeapSort(int* arr, int sz)
 		sz--;
 		AdjustDown(arr, sz, 0);
 		end = sz - 1;
+	}
+}
+
+int GetMidIndex(int* a, int left, int right)
+{
+	int mid = (left + right) / 2;
+	if (a[left] < a[mid])
+	{
+		if (a[mid] < a[right])
+		{
+			return mid;
+		}
+		else if (a[left] < a[right])
+		{
+			return right;
+		}
+		else
+		{
+			return left;
+		}
+	}
+	else
+	{
+		if (a[mid] > a[right])
+		{
+			return mid;
+		}
+		else if(a[right] < a[left])
+		{
+			return right;
+		}
+		else
+		{
+			return left;
+		}
+	}
+}
+
+int PartSort1(int* a, int left, int right)
+{
+	//一轮定位一个key
+	int mid = GetMidIndex(a, left, right);
+	Swap(&a[left], &a[mid]);
+
+	int keyi = left;//初始值也可以是right,此时要左边先走
+	while (left < right)//右边先走，保证相遇点比key小
+	{
+		while (left < right && a[right] >= a[keyi])
+		{
+			right--;
+		}
+
+		while (left < right && a[left] <= a[keyi])
+		{
+			left++;
+		}
+
+		Swap(&a[left], &a[right]);
+	}
+	Swap(&a[keyi], &a[left]);
+
+	return left;
+}
+
+//有坑版
+int PartSort2(int* a, int left, int right)
+{
+	int mid = GetMidIndex(a, left, right);
+	Swap(&a[left], &a[mid]);
+
+	int tmp = a[left];
+
+	int hole = left;
+	while (left < right)
+	{
+		while (left < right && a[right] >= a[hole])
+		{
+			right--;
+		}
+
+		a[hole] = a[right];
+		hole = right;
+		while (left < right && a[left] <= a[hole])
+		{
+			left++;
+		}
+
+		a[hole] = a[left];
+		hole = left;
+	}
+	a[hole] = tmp;
+	return hole;
+}
+
+
+//前后指针把较大值往后推
+int PartSort3(int* arr, int left, int right)
+{
+	int mid = GetMidIndex(arr, left, right);
+	Swap(&arr[left], &arr[mid]);
+
+	int key = left;
+	int prev = left;
+	int cur = left+1;
+
+	while (cur <= right)
+	{
+		if (arr[cur] < arr[key] && prev + 1 != cur)
+		{
+			prev++;
+			Swap(&arr[cur], &arr[prev]);
+		}
+		cur++;
+	}
+	Swap(&arr[key], &arr[prev]);
+	return prev;
+}
+
+
+void QuickSort(int* a, int begin, int end)
+{
+	if (begin >= end)
+	{
+		return;
+	}
+
+	int keyi = PartSort3(a, begin, end);
+
+	QuickSort(a, begin, keyi - 1);
+	QuickSort(a, keyi + 1, end);
+	
+}
+
+void QuickSortNornR(int* a, int begin, int end)
+{
+	ST st;
+	STInit(&st);
+	STPush(&st, end);
+	STPush(&st, begin);
+
+	while (!STEmpty(&st))
+	{
+		int left = STTop(&st);
+		STPop(&st);
+		int right = STTop(&st);
+		STPop(&st);
+
+		int keyi = PartSort3(a, left, right);
+
+		if (keyi + 1 < right)
+		{
+			STPush(&st, right);
+			STPush(&st, keyi + 1);
+		}
+
+		if (keyi - 1 > left)
+		{
+			STPush(&st,keyi - 1);
+			STPush(&st, left);
+		}
 	}
 }
