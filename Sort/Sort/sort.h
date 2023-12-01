@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <memory.h>
 #include "stack.h"
 
 
@@ -20,3 +21,7 @@ void HeapSort(int* arr, int sz);
 void QuickSort(int*arr, int left, int right)  ;
 
 void QuickSortNornR(int* a, int begin, int end);
+
+void MergeSort(int* a, int sz);
+
+void MergeSortNornR(int* a, int sz);

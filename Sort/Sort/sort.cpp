@@ -340,3 +340,113 @@ void QuickSortNornR(int* a, int begin, int end)
 		}
 	}
 }
+
+void _MergeSort(int*a,int begin,int end,int* tmp)
+{
+	if (begin >= end)
+	{
+		return;
+	}
+
+	int mid = (begin + end) / 2;
+
+	_MergeSort(a, begin, mid, tmp);
+	_MergeSort(a, mid + 1, end, tmp);
+
+	//开始归并
+	int begin1 = begin, begin2 = mid + 1;
+	int end1 = mid, end2 = end;
+
+	int cur = begin;
+
+	while (begin1 <= end1 && begin2 <= end2)
+	{
+		if (a[begin1] < a[begin2])
+		{
+			tmp[cur++] = a[begin1++];
+		}
+		else
+		{
+			tmp[cur++] = a[begin2++];
+		}
+	}
+
+	while (begin1 <= end1)
+	{
+		tmp[cur++] = a[begin1++];
+	}
+
+	while (begin2 <= end2)
+	{
+		tmp[cur++] = a[begin2++];
+	}
+
+	memcpy(a+begin, tmp + begin, sizeof(int) * (end - begin + 1));
+}
+
+
+void MergeSort(int* a, int sz)
+{
+	int* tmp = (int*)malloc(sizeof(int) * sz);
+	_MergeSort(a, 0, sz - 1, tmp);
+}
+
+
+void MergeSortNornR(int* a, int sz)
+{
+	int* tmp = (int*)malloc(sizeof(int) * sz);
+	if (tmp == NULL)
+	{
+		return;
+	}
+	int gap = 1;
+
+	while (gap<sz)
+	{
+		for (int i = 0;i<sz ; i+=2*gap)
+		{
+			//每组的数据合并
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + gap * 2 - 1;
+
+			int cur = begin1;
+			if (end1 >= sz || begin2 >= sz)
+			{
+				break;
+			}
+
+
+			if (end2 >= sz)
+			{
+				end2 = sz - 1;
+			}
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[cur++] = a[begin1++];
+				}
+				else
+				{
+					tmp[cur++] = a[begin2++];
+				}
+			}
+
+			while (begin1 <= end1)
+			{
+				tmp[cur++] = a[begin1++];
+			}
+
+			while (begin2 <= end2)
+			{
+				tmp[cur++] = a[begin2++];
+			}
+
+			memcpy(a+i, tmp+i, sizeof(int) * (end2-i+1));
+
+		}
+
+		gap *= 2;
+
+	}
+}

@@ -280,121 +280,157 @@
 
 
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
-#include<stdbool.h>
-#include<string.h>
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//#include<stdbool.h>
+//#include<string.h>
+//
+//typedef int STDataType;
+//typedef struct Stack
+//{
+//	STDataType* a;
+//	int top;
+//	int capacity;
+//}ST;
+//
+//void StackInit(ST* ps)
+//{
+//	assert(ps);
+//	ps->a = NULL;
+//	ps->top = 0;
+//	ps->capacity = 0;
+//}
+//
+//void StackPush(ST* ps, STDataType x)
+//{
+//	assert(ps);
+//	if (ps->top == ps->capacity)
+//	{
+//		int newCapacity = (ps->capacity == 0 ? 4 : ps->capacity * 2);
+//		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * newCapacity);
+//		if (tmp == NULL)
+//		{
+//			exit(-1);
+//		}
+//		ps->a = tmp;
+//		ps->capacity = newCapacity;
+//	}
+//	ps->a[ps->top] = x;
+//	(ps->top)++;
+//}
+//
+//void StackPop(ST* ps)
+//{
+//	assert(ps);
+//	assert(ps->top > 0);
+//
+//	ps->top--;
+//	if (ps->top == -1)
+//	{
+//		printf("Not enough operands inexpression");
+//		exit(-1);
+//	}
+//}
+//
+//STDataType StackTop(ST* ps)
+//{
+//	assert(ps);
+//	return ps->a[ps->top - 1];
+//}
+//int main()
+//{
+//	ST st;
+//	StackInit(&st);
+//	char ch;
+//	printf("Enter an RPN expression:");
+//	while (scanf(" %c", &ch) != EOF)
+//	{
+//		int num = 0;
+//		if ((ch >= '0' && ch <= '9') || ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '=')
+//		{
+//
+//			if (ch >= '0' && ch <= '9')
+//			{
+//				StackPush(&st, ch - '0');
+//			}
+//			else if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+//			{
+//
+//				int num1 = StackTop(&st);
+//				StackPop(&st);
+//				int num2 = StackTop(&st);
+//				StackPop(&st);
+//				switch (ch)
+//				{
+//				case'+':
+//					num = num1 + num2;
+//					break;
+//				case'-':
+//					num = num2 - num1;
+//					break;
+//				case'*':
+//					num = num1 * num2;
+//					break;
+//				case'/':
+//					num = num2 / num1;
+//					break;
+//
+//				}
+//				StackPush(&st, num);
+//			}
+//			else if (ch == '=')
+//			{
+//
+//				if (st.top > 1);
+//				{
+//					printf("Expression is too complex");
+//					exit(-1);
+//				}
+//				printf("Value of expression:%d\n", StackTop(&st));
+//				StackPop(&st);
+//				StackInit(&st);
+//				printf("Enter an RPN expression:");
+//			}
+//		}
+//		else
+//			break;
+//	}
+//
+//	return 0;
+//}
 
-typedef int STDataType;
-typedef struct Stack
-{
-	STDataType* a;
-	int top;
-	int capacity;
-}ST;
 
-void StackInit(ST* ps)
-{
-	assert(ps);
-	ps->a = NULL;
-	ps->top = 0;
-	ps->capacity = 0;
-}
 
-void StackPush(ST* ps, STDataType x)
-{
-	assert(ps);
-	if (ps->top == ps->capacity)
-	{
-		int newCapacity = (ps->capacity == 0 ? 4 : ps->capacity * 2);
-		STDataType* tmp = (STDataType*)realloc(ps->a, sizeof(STDataType) * newCapacity);
-		if (tmp == NULL)
-		{
-			exit(-1);
-		}
-		ps->a = tmp;
-		ps->capacity = newCapacity;
-	}
-	ps->a[ps->top] = x;
-	(ps->top)++;
-}
 
-void StackPop(ST* ps)
-{
-	assert(ps);
-	assert(ps->top > 0);
 
-	ps->top--;
-	if (ps->top == -1)
-	{
-		printf("Not enough operands inexpression");
-		exit(-1);
-	}
-}
+#include <string.h>
+#include <stdio.h>
 
-STDataType StackTop(ST* ps)
-{
-	assert(ps);
-	return ps->a[ps->top - 1];
-}
 int main()
 {
-	ST st;
-	StackInit(&st);
-	char ch;
-	printf("Enter an RPN expression:");
-	while (scanf(" %c", &ch) != EOF)
+	char str[10000] = { 0 };
+	char cnt[10000] = { 0 };
+	int n, m;
+	scanf("%d %d", &n, &m);
+	int letter[26] = { 0 };
+
+	scanf("%s", str);
+
+	int lenth = strlen(str);
+	//打表
+	for (int i = 0; i < lenth; i++)
 	{
-		int num = 0;
-		if ((ch >= '0' && ch <= '9') || ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '=')
-		{
+		int cur = str[i] - 'a';//拿到下标
+		letter[cur]++;//把该位置的字母加入统计
+		cnt[i] = letter[cur];//存入数组
+	}
 
-			if (ch >= '0' && ch <= '9')
-			{
-				StackPush(&st, ch - '0');
-			}
-			else if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
-			{
-
-				int num1 = StackTop(&st);
-				StackPop(&st);
-				int num2 = StackTop(&st);
-				StackPop(&st);
-				switch (ch)
-				{
-				case'+':
-					num = num1 + num2;
-					break;
-				case'-':
-					num = num2 - num1;
-					break;
-				case'*':
-					num = num1 * num2;
-					break;
-				case'/':
-					num = num2 / num1;
-					break;
-
-				}
-				StackPush(&st, num);
-			}
-			else if (ch == '=')
-			{
-
-				if (st.top > 1);
-				{
-					printf("Expression is too complex");
-					exit(-1);
-				}
-				printf("Value of expression:%d\n", StackTop(&st));
-				StackPop(&st);
-				StackInit(&st);
-				printf("Enter an RPN expression:");
-			}
-		}
-		else
-			break;
+	for (int i = 0; i < m; i++)
+	{
+		int pos;
+		scanf("%d", &pos);
+		printf("%d\n", cnt[pos - 1]);//直接查
 	}
 
 	return 0;
