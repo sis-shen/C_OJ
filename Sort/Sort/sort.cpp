@@ -35,7 +35,7 @@ void InsertSort(int* arr, int sz)
 }
 
 
-void ShellSort(int *arr, int sz)
+void ShellSort(int *arr, int sz)//时间复杂度O(N^1.3)
 {
 
 	int gap = sz;
@@ -163,6 +163,8 @@ void AdjustDown(int* arr, int sz,int parent)
 	}
 }
 
+
+
 void HeapSort(int* arr, int sz)
 {
 	//建堆
@@ -215,6 +217,8 @@ int GetMidIndex(int* a, int left, int right)
 		}
 	}
 }
+
+//两路划分,有大量相等数据时，效率低
 
 int PartSort1(int* a, int left, int right)
 {
@@ -276,7 +280,7 @@ int PartSort2(int* a, int left, int right)
 //前后指针把较大值往后推
 int PartSort3(int* arr, int left, int right)
 {
-	int mid = GetMidIndex(arr, left, right);
+	int mid = left + (rand() % (right - left));//随机取中
 	Swap(&arr[left], &arr[mid]);
 
 	int key = left;
@@ -297,6 +301,7 @@ int PartSort3(int* arr, int left, int right)
 }
 
 
+
 void QuickSort(int* a, int begin, int end)
 {
 	if (begin >= end)
@@ -304,11 +309,54 @@ void QuickSort(int* a, int begin, int end)
 		return;
 	}
 
+
 	int keyi = PartSort3(a, begin, end);
 
 	QuickSort(a, begin, keyi - 1);
 	QuickSort(a, keyi + 1, end);
 	
+}
+
+void QuickSort2(int* a, int begin, int end) //三路划分，效率有所下降,但应用面广
+{
+	srand((unsigned)time(NULL));
+
+	int left = begin;
+	int right = end;
+	int cur = left + 1;
+
+	if (left >= right)
+	{
+		return;
+	}
+	int mid = GetMidIndex(a, left, right);
+	Swap(&a[left], &a[mid]);
+
+	int key = a[left];
+	while (cur <= right)
+	{
+		if (a[cur] < key)
+		{
+			Swap(&a[left], &a[cur]);
+			cur++;
+			left++;
+		}
+		else if (a[cur] > key)
+		{
+			Swap(&a[cur], &a[right]);
+			right--;
+		}
+		else
+		{
+			cur++;
+		}
+
+	}
+
+
+	QuickSort2(a, begin, left - 1);
+	QuickSort2(a, right + 1, end);
+
 }
 
 void QuickSortNornR(int* a, int begin, int end)
@@ -445,8 +493,111 @@ void MergeSortNornR(int* a, int sz)
 			memcpy(a+i, tmp+i, sizeof(int) * (end2-i+1));
 
 		}
+		gap *= 2;
+
+	}
+}
+
+
+
+void MergeSortNornR2(int* a, int sz)
+{
+	int* tmp = (int*)malloc(sizeof(int) * sz);
+	if (tmp == NULL)
+	{
+		return;
+	}
+	int gap = 1;
+
+	while (gap < sz)
+	{
+		for (int i = 0; i < sz; i += 2 * gap)
+		{
+			//每组的数据合并
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + gap * 2 - 1;
+
+			int cur = begin1;
+
+
+			if (end1 >= sz || begin2>=sz)
+			{
+				end1 = sz - 1;
+
+				//第二个区间改为不存在区间
+				begin2 = sz;
+				end2 = sz - 1;
+			}
+
+
+			if (end2 >= sz)
+			{
+				end2 = sz - 1;
+			}
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[cur++] = a[begin1++];
+				}
+				else
+				{
+					tmp[cur++] = a[begin2++];
+				}
+			}
+
+			while (begin1 <= end1)
+			{
+				tmp[cur++] = a[begin1++];
+			}
+
+			while (begin2 <= end2)
+			{
+				tmp[cur++] = a[begin2++];
+			}
+
+
+		}
+
+		memcpy(a, tmp, sizeof(int) * sz);
 
 		gap *= 2;
 
+	}
+}
+
+void CountSort(int* a, int sz)
+{
+	int max = a[0];
+	int min = a[0];
+	
+	for (int i = 0; i < sz; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+	}
+
+	int* tmp = (int*)malloc(sizeof(int) * (max - min + 1));
+	for (int i = 0; i < sz; i++)
+	{
+		int cur = a[i] - min;
+		tmp[cur]++;
+	}
+
+	int cur = 0;
+	for (int i = 0; i < max - min + 1; i++)
+	{
+		while (tmp[i]--)
+		{
+			a[cur] = tmp[i];
+			cur++;
+		}
 	}
 }

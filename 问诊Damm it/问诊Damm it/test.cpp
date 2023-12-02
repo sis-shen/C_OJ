@@ -418,7 +418,7 @@ int main()
 	scanf("%s", str);
 
 	int lenth = strlen(str);
-	//打表
+	//打表-准备工作
 	for (int i = 0; i < lenth; i++)
 	{
 		int cur = str[i] - 'a';//拿到下标
@@ -426,6 +426,8 @@ int main()
 		cnt[i] = letter[cur];//存入数组
 	}
 
+
+	
 	for (int i = 0; i < m; i++)
 	{
 		int pos;

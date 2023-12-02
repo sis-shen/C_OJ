@@ -44,7 +44,7 @@ void TestQuickSort()
 	int arr[] = { 1,6,8,7,5,4,6,9,10,3,2 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	PrintArray(arr, sz);
-	QuickSort(arr,0,sz-1);
+	QuickSort2(arr,0,sz-1);
 	PrintArray(arr, sz);
 }
 
@@ -62,7 +62,17 @@ void TestMergeSortNornR()
 	int arr[] = { 1,6,8,7,5,4,6,9,21 };
 	int sz = sizeof(arr) / sizeof(arr[0]);
 	PrintArray(arr, sz);
-	MergeSortNornR(arr, sz);
+	MergeSortNornR2(arr, sz);
+	PrintArray(arr, sz);
+}
+
+
+void TestCountSort()
+{
+	int arr[] = { 1,6,8,7,5,4,6,9,21 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	PrintArray(arr, sz);
+	CountSort(arr, sz);
 	PrintArray(arr, sz);
 }
 
@@ -119,7 +129,7 @@ void TestOp()
 	int end6 = clock();
 
 	int begin7 = clock();
-	MergeSort(a7, N);
+	MergeSortNornR2(a7, N);
 	int end7 = clock();
 
 	printf("Insert: %d\n", -begin1 + end1);
@@ -144,7 +154,7 @@ void TestOp()
 
 int main()
 {
-	TestMergeSortNornR();
+	TestCountSort();
 	//TestOp();
 	return 0;
 }

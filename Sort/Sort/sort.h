@@ -18,10 +18,16 @@ void SelectSort(int* arr, int sz);
 
 void HeapSort(int* arr, int sz);
 
-void QuickSort(int*arr, int left, int right)  ;
+void QuickSort(int*arr, int left, int right);
 
 void QuickSortNornR(int* a, int begin, int end);
 
 void MergeSort(int* a, int sz);
 
 void MergeSortNornR(int* a, int sz);
+
+void MergeSortNornR2(int* a, int sz);
+
+void QuickSort2(int* arr, int left, int right);
+
+void CountSort(int* a, int sz);
