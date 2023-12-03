@@ -404,36 +404,38 @@
 
 
 
-#include <string.h>
-#include <stdio.h>
+//#include <string.h>
+//#include <stdio.h>
+//
+//int main()
+//{
+//	char str[10000] = { 0 };
+//	char cnt[10000] = { 0 };
+//	int n, m;
+//	scanf("%d %d", &n, &m);
+//	int letter[26] = { 0 };
+//
+//	scanf("%s", str);
+//
+//	int lenth = strlen(str);
+//	//打表-准备工作
+//	for (int i = 0; i < lenth; i++)
+//	{
+//		int cur = str[i] - 'a';//拿到下标
+//		letter[cur]++;//把该位置的字母加入统计
+//		cnt[i] = letter[cur];//存入数组
+//	}
+//
+//
+//	
+//	for (int i = 0; i < m; i++)
+//	{
+//		int pos;
+//		scanf("%d", &pos);
+//		printf("%d\n", cnt[pos - 1]);//直接查
+//	}
+//
+//	return 0;
+//}
 
-int main()
-{
-	char str[10000] = { 0 };
-	char cnt[10000] = { 0 };
-	int n, m;
-	scanf("%d %d", &n, &m);
-	int letter[26] = { 0 };
 
-	scanf("%s", str);
-
-	int lenth = strlen(str);
-	//打表-准备工作
-	for (int i = 0; i < lenth; i++)
-	{
-		int cur = str[i] - 'a';//拿到下标
-		letter[cur]++;//把该位置的字母加入统计
-		cnt[i] = letter[cur];//存入数组
-	}
-
-
-	
-	for (int i = 0; i < m; i++)
-	{
-		int pos;
-		scanf("%d", &pos);
-		printf("%d\n", cnt[pos - 1]);//直接查
-	}
-
-	return 0;
-}
