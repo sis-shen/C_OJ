@@ -1,27 +1,63 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 
 #include <iostream>
+#include "game.h"
 using namespace std;
 
 
-int main()
+class Date
 {
-	
-	int a = 0;
-	auto b = &a;
-	auto c = &b;
-	
-	cout << typeid(b).name() << endl;
-	cout << typeid(c).name() << endl;
+public:
 
-	int arr[] = { 1,3,5,7,8,9,4,11,20,1 };
-	//范围for -- 语法糖
-
-	for(auto mem : arr)
+	Date()//构建函数
 	{
-		cout << mem << " ";
+		_year = 0;
+		_day = 0;
+		_month = 0;
 	}
 
+	Date(int year)//可以重载
+	{
+		_year = year;
+	}
+
+	//拷贝构造函数
+	Date(Date& d)
+	{
+		 
+	}
+
+
+	void pint();
+
+	//void Init(int year, int month, int day)
+	//{
+	//	//还有个隐含形参: this ,存了对象的地址
+	//	this->_year = year;
+	//	_month = month;
+	//	_day = day;
+	//}
+
+private:
+
+	//缺省值
+	int _year = 0;
+	int _month = 0;
+	int _day = 0;
+
+}; 
+
+void Date::pint()
+{
+	std::cout << _year << ":" << _month << ":" << _day<<endl;
+}
+
+int main()
+{
+	//Date 为类
+	// date 为对象
+	Date date;
+	date.pint();
 	return 0;
 }
 
