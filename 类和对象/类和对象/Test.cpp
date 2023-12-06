@@ -1,151 +1,122 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 
-#include <iostream>
-#include "game.h"
-using namespace std;
+#include "Date.h"
 
-
-class Date
-{
-public:
-
-	Date()//构建函数
-	{
-		_year = 0;
-		_day = 0;
-		_month = 0;
-	}
-
-	Date(int year,int month ,int day)//可以重载
-	{
-		_year = year;
-		_month = month;
-		_day = day;
-	}
-
-	//拷贝构造函数
-	Date(Date& d)
-	{
-		_year = d._year;
-		_month = d._month;
-		this->_day = d._day;
-	}
-
-
-	void pint();
-
-	int GetMonthDay(int year, int month)
-	{
-		if (month <= 0 || month >= 13)
-		{
-			return 0;
-		}
-
-		int monthArray[13] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
-		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
-		{
-			monthArray[2]++;
-		}
-		return monthArray[month];
-	}
-
-	//+
-	Date Add(int x)
-	{
-		//Date tmp = *this;//或者
-		Date tmp(*this);
-		
-		tmp._day += x;
-		while (tmp._day > GetMonthDay(tmp._year, tmp._month))
-		{
-			tmp._day -= GetMonthDay(tmp._year, tmp._month);
-			++tmp._month;
-			if (tmp._month == 13)
-			{
-				tmp._month = 1;
-				tmp._year++;
-			}
-		}
-
-		return tmp;
-	}
-
-	//+=
-	//传值返回会调用 拷贝构造， 使用传引用返回减小消耗 
-	Date& AddEqual(int x)
-	{
-		//Date tmp = *this;//或者
-		Date& tmp(*this);
-
-		tmp._day += x;
-		while (tmp._day > GetMonthDay(tmp._year, tmp._month))
-		{
-			tmp._day -= GetMonthDay(tmp._year, tmp._month);
-			++tmp._month;
-			if (tmp._month == 13)
-			{
-				tmp._month = 1;
-				tmp._year++;
-			}
-		}
-
-		return tmp;
-	}
-
-	bool operator==( const Date& d2)
-	{
-		return _year == d2._year;
-	}
-
-	bool operator<(const Date& d2)
-	{
-		return _year < d2._year 
-			|| (_year == d2._year && _month < d2._month) 
-			|| (_year == d2._year && _month == d2._month && _day < d2._day);
-	}
-private:
-
-	//缺省值
-	int _year = 0;
-	int _month = 0;
-	int _day = 0;
-
-}; 
-
-void Date::pint()
-{
-	std::cout << _year << ":" << _month << ":" << _day<<endl;
-}
+//class B
+//{
+//public:
+//	B()
+//	{
+//		cout << "B()" << endl;
+//	}
+//
+//private:
+//	int _a;
+//};
+//
+//
+//class A
+//{
+//public:
+//	A()
+//		: _x(233)//初始化列表
+//		, ref(_a1)
+//		, _a1(5)
+//		, _bb()
+//	{
+//
+//	}
+//
+//	explicit A(int x) //不允许隐式类型转换   !!!!!!
+//		: _x(233)
+//		, ref(_a1)
+//		, _a1(x)
+//		, _bb()
+//	{
+//
+//	}
+//
+//private:
+//	int _a1 = 1;
+//	int _b;
+//	const int _x;
+//	int& ref;
+//	B _bb;
+//};
+//
 //
 //int main()
 //{
-//	//Date 为类
-//	// date 为对象
-//	Date date;
-//	date.pint();
+//	Date d1(2023, 9, 8);
+//	Date d2(2023, 12, 6);
+//
+//	int day1 = d1 - d2;
+//	int day2 = d2 - d1;
+//
+//	void* pd = &d1;
+//
+//	A aa;
+//
+//	A aa(1);
+//	A a2 = 1;//隐式类型转换
+//	
 //	return 0;
 //}
 
-//////////////////////////////////////////////////////////////
-//运算符重载  使自定义类型可以使用运算符
+
+//实现一个类，计算程序中创建了多少个类
+
+class A
+{
+public:
+	A()
+	{
+		count++;
+	}
+
+	A(const A& aa)
+	{
+		count++;
+	}
+
+	int GetCount() const
+	{
+		return count;
+	}
+
+	//静态成员函数 --没有this指针 
+	static int STGetCount()
+	{
+		return count;
+	}
+private:
+	//静态成员，不属于某个静态成员，属于整个类
+	static int count;
+
+
+public:
+	class C
+	{
+
+	};
+};
+
+int A::count = 0;
 
 
 
 int main()
 {
-	Date d1(233, 3, 6);
-	Date d2(666, 4, 8);
+	A aa;
 
-	operator==(d1, d2);
-	d1 == d2;
+	cout << A::STGetCount() << endl;
+	A* ptr = nullptr;
+	cout << ptr->GetCount() << endl;
+
+
 
 	return 0;
 }
-
-
-
-
-
 
 
 

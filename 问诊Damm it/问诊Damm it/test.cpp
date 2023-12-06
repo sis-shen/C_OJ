@@ -438,4 +438,35 @@
 //	return 0;
 //}
 
+//#include <stdlib.h>
+//
+//int main()
+//{
+//	char(*arr)[10] = (char (*)[10])malloc(sizeof(int) * 10 * 5);
+//
+//
+//	return 0;
+//}
 
+
+
+
+#include <stdio.h>
+
+int main() {
+
+    for (int i = 10000; i <= 9999; i++)
+    {
+        long long sum = (i / 10000) * (i % 10000)
+            + (i / 1000) * (i % 1000)
+            + (i / 100) * (i % 100)
+            + (i / 10) * (i % 10);
+
+        if (sum == i)
+        {
+            printf("%d ", i);
+        }
+    }
+
+    return 0;
+}
