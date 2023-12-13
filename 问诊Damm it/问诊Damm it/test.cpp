@@ -451,22 +451,47 @@
 
 
 
-#include <stdio.h>
+//#include <stdio.h>
+//
+//int main() {
+//
+//    for (int i = 10000; i <= 9999; i++)
+//    {
+//        long long sum = (i / 10000) * (i % 10000)
+//            + (i / 1000) * (i % 1000)
+//            + (i / 100) * (i % 100)
+//            + (i / 10) * (i % 10);
+//
+//        if (sum == i)
+//        {
+//            printf("%d ", i);
+//        }
+//    }
+//
+//    return 0;
+//}
 
-int main() {
+//#include <stdio.h>
+//#include <stdlib.h>
 
-    for (int i = 10000; i <= 9999; i++)
-    {
-        long long sum = (i / 10000) * (i % 10000)
-            + (i / 1000) * (i % 1000)
-            + (i / 100) * (i % 100)
-            + (i / 10) * (i % 10);
-
-        if (sum == i)
-        {
-            printf("%d ", i);
-        }
-    }
-
-    return 0;
-}
+//typedef struct Node
+//{
+//	Node* next;
+//	int val;
+//}Node;
+//
+//void Free(Node** pp)
+//{
+//	Node* p = *pp;
+//	free(p);
+//}
+//
+//int main()
+//{
+//	Node* phead = (Node*)malloc(sizeof(Node));
+//	Free(&phead);
+//	Free(&phead);
+//	printf("1");
+//
+//	return 0;
+//}
