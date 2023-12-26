@@ -495,3 +495,19 @@
 //
 //	return 0;
 //}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Stu
+{
+	int _score;
+	int _code;
+};
+
+int main()
+{
+	struct Stu* pstu = (Stu*)malloc(sizeof(struct Stu));
+	 
+	return 0;
+}
