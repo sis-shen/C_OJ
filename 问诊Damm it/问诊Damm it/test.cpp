@@ -497,17 +497,171 @@
 //}
 
 
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct Stu
+//{
+//	int _score;
+//	int _code;
+//};
+//
+//int main()
+//{
+//	struct Stu* pstu = (Stu*)malloc(sizeof(struct Stu));
+//	 
+//	return 0;
+//}
+
+
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//    int len = 0, m = 0;
+//    char str[201] = { 0 };
+//    int  ch = 0;
+//    int da = 0, xiao = 0, shu = 0;
+//    while (gets_s(str) != NULL)
+//    {
+//        len = strlen(str);//先把句子倒着输出
+//        int flag1 = 0, flag2 = len;
+//        for (int i = len - 1; i >= 0; i--)
+//        {
+//            if (str[i] == ' ')
+//            {
+//                flag1 = i;
+//                m++;
+//                for (int j = i + 1; j < flag2; j++)
+//                {
+//                    printf("%c", str[j]);
+//                }
+//                printf(" ");
+//                flag2 = i;
+//            }
+//            else if (i == 0)
+//            {
+//                for (int j = 0; j < flag2; j++)
+//                {
+//                    printf("%c", str[j]);
+//                }
+//                printf("\n");
+//
+//            }
+//        }
+//        //接着找最大公约数
+//        if (len % (m + 1) == 0)
+//            ch = m + 1;
+//        else
+//        {
+//            for (int i = 0; i < m + 1; i++)
+//            {
+//                if (len % i == 0 && (m + 1) % i == 0)
+//                    ch = i;
+//            }
+//        }
+//        printf("%d\n", ch);
+//        //开始整立方体  打印ch-2行字符
+//        for (int i = 0; i < ch - 1; i++)//第一行
+//        {
+//            printf(" ");
+//        }
+//        for (int i = 0; i < ch; i++)
+//        {
+//            printf("*");
+//        }
+//        printf("\n");
+//        //后面的行
+//        for (int i = 0; i < ch - 2; i++)
+//        {
+//            for (int j = ch - 2 - i; j > 0; j--)
+//            {
+//                printf(" ");
+//            }
+//            printf("*");
+//            for (int k = 0; k < ch - 2; k++)
+//            {
+//                printf("%c", da + 65);
+//                da++;
+//                if (da > 25)
+//                {
+//                    da -= 26;
+//                }
+//            }
+//            printf("*");//空格和数字个数和为ch-2
+//            for (int h = 0; h < i; h++)
+//            {
+//                printf("%c", shu + 49);
+//                shu++;
+//                if (shu > 8)
+//                {
+//                    shu -= 9;
+//                }
+//            }
+//            printf("*\n");
+//        }
+//        //下一层
+//        for (int i = 0; i < ch; i++)
+//        {
+//            printf("*");
+//        }
+//        for (int i = 0; i < ch - 2; i++)
+//        {
+//            printf("%c", shu + 49);
+//            shu++;
+//            if (shu > 8)
+//            {
+//                shu -= 9;
+//            }
+//        }
+//        printf("*\n");
+//        //最后的循环
+//        for (int k = 0; k < ch - 2; k++)
+//        {
+//            printf("*");
+//            for (int i = 0; i < ch - 2; i++)
+//            {
+//                printf("%c", xiao + 97);
+//                xiao++;
+//                if (xiao > 25)
+//                {
+//                    xiao -= 26;
+//                }
+//            }
+//            printf("*");
+//            for (int j = 0; j < ch - 3 - k; j++)
+//            {
+//                printf("%c", shu + 49);
+//                shu++;
+//                if (shu > 8)
+//                {
+//                    shu -= 9;
+//                }
+//            }
+//            printf("*\n");
+//        }
+//        for (int i = 0; i < ch; i++)
+//        {
+//            printf("*");
+//        }
+//        printf("\n");
+//        printf("\n");
+//
+//
+//    }
+//    return 0;
+//}
+
+
 #include <stdio.h>
-#include <stdlib.h>
-struct Stu
-{
-	int _score;
-	int _code;
-};
 
 int main()
 {
-	struct Stu* pstu = (Stu*)malloc(sizeof(struct Stu));
-	 
+	int i = 1;
+	for ( i = 1; i < 10; i++)
+	{
+		int i;
+
+		i = 1;
+	}
 	return 0;
 }
