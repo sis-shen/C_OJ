@@ -198,54 +198,54 @@
 
 //问题 G: 21级补考-按位相加（10分）
 
-//#include <stdio.h>
-//#include <string.h>
-//int main()
-//{
-//	char A[12] = { 0 };
-//	char B[12] = { 0 };
-//
-//	while (~scanf("%s %s", A, B))
-//	{
-//		int lenA = strlen(A);
-//		int lenB = strlen(B);
-//
-//		int max = lenA > lenB ? lenA : lenB;
-//		char ret[12] = { 0 };
-//		int curA = lenA - 1;
-//		int curB = lenB - 1;
-//		int cur = max - 1;
-//		while (curA >= 0 && curB >= 0)
-//		{
-//			int num = A[curA--] - '0' + B[curB--] - '0';
-//			num %= 10;
-//			ret[cur--] = num + '0';
-//		}
-//		while (curA >= 0)
-//		{
-//			ret[cur--] = A[curA--];
-//		}
-//		while (curB >= 0)
-//		{
-//			ret[cur--] = B[curB--];
-//		}
-//		ret[max] = '\0';
-//		char* curr = ret;
-//		while (*curr == '0')
-//		{
-//			curr++;
-//		}
-//		if (*curr == '\0')
-//		{
-//			printf("0\n");
-//			continue;
-//		}
-//		else
-//		printf("%s\n", curr);
-//	}
-//
-//	return 0;
-//}
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char A[12] = { 0 };
+	char B[12] = { 0 };
+
+	while (~scanf("%s %s", A, B))
+	{
+		int lenA = strlen(A);
+		int lenB = strlen(B);
+
+		int max = lenA > lenB ? lenA : lenB;
+		char ret[12] = { 0 };
+		int curA = lenA - 1;
+		int curB = lenB - 1;
+		int cur = max - 1;
+		while (curA >= 0 && curB >= 0)
+		{
+			int num = A[curA--] - '0' + B[curB--] - '0';
+			num %= 10;
+			ret[cur--] = num + '0';
+		}
+		while (curA >= 0)
+		{
+			ret[cur--] = A[curA--];
+		}
+		while (curB >= 0)
+		{
+			ret[cur--] = B[curB--];
+		}
+		ret[max] = '\0';
+		char* curr = ret;
+		while (*curr == '0')
+		{
+			curr++;
+		}
+		if (*curr == '\0')
+		{
+			printf("0\n");
+			continue;
+		}
+		else
+		printf("%s\n", curr);
+	}
+
+	return 0;
+}
 
 //问题 H: 21级补考-考试测评（10分）
 //#include <stdio.h>

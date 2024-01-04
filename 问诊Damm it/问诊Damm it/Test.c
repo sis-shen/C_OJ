@@ -1,142 +1,214 @@
-//#include"SList.h"
-//
-//void TestList1()
-//{
-//	SLTNode* plist = NULL;
-//	SListPushBack(&plist, 1);
-//	SListPushBack(&plist, 2);
-//	SListPushBack(&plist, 3);
-//	SListPushBack(&plist, 4);
-//
-//	SListPrint(plist);
-//
-//	SListPushFront(&plist, 1);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 3);
-//	SListPushFront(&plist, 4);
-//
-//	SListPrint(plist);
-//
-//}
-//void TestList2()
-//{
-//	SLTNode* plist = NULL;
-//	
-//
-//	SListPushFront(&plist, 1);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 3);
-//	SListPushFront(&plist, 4);
-//
-//	SListPrint(plist);
-//
-//}
-//void TestList3()
-//{
-//	SLTNode* plist = NULL;
-//
-//
-//	SListPushFront(&plist, 1);
-//	free(plist);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 3);
-//	SListPushFront(&plist, 4);
-//
-//	SListPopFront(&plist);
-//	SListPrint(plist);
-//
-//	SListPopFront(&plist);
-//	SListPrint(plist);
-//
-//	SListPopFront(&plist);
-//	SListPrint(plist);
-//
-//	SListPopFront(&plist);
-//	SListPrint(plist);
-//
-//}
-//void TestList4()
-//{
-//	SLTNode* plist = NULL;
-//
-//
-//	SListPushFront(&plist, 1);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 3);
-//	SListPushFront(&plist, 4);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 4);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 4);
-//	SListPrint(plist);
-//
-//	//找
-//	SLTNode* pos = SListFind(plist, 2);
-//	int i = 1;
-//	while (pos)
-//	{
-//		printf("第%d个pos节点：%p->%d\n", i++, pos, pos->data);
-//       pos = SListFind(pos->next, 2);
-//	}
-//
-//	//将3修改成30
-//	pos = SListFind(plist, 3);
-//	if (pos)
-//	{
-//		pos->data = 30;
-//	}
-//	SListPrint(plist);
-//
-//}
-//void TestList5()
-//{
-//	SLTNode* plist = NULL;
-//
-//
-//	SListPushFront(&plist, 1);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 3);
-//	SListPushFront(&plist, 4);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 4);
-//	SListPushFront(&plist, 2);
-//	SListPushFront(&plist, 4);
-//	SListPrint(plist);
-//
-//	SLTNode* pos1 = SListFind(plist, 1);
-//	if (pos1)
-//	{
-//		SListInsert(&plist, pos1, 10);
-//	}
-//	SListPrint(plist);
-//
-//	SLTNode* pos2 = SListFind(plist, 3);
-//	if (pos2)
-//	{
-//		SListInsert(&plist, pos2, 30);
-//	}
-//	SListPrint(plist);
-//
-//}
-//void TestList6()
-//{
-//	SLTNode* plist = NULL;
-//
-//	//断言报错
-//	SListPushBack(&plist, 1);
-//	SListPushBack(&plist, 2);
-//	SListPushBack(&plist, 3);
-//	SListPushBack(&plist, 4);
-//
-//	SListPrint(plist);
-//	SListDestroy(&plist);
-//}
-//int main()
-//{
-//	//TestList1(); 
-//	//TestList2();
-//	TestList3();
-//	//TestList4();
-//	//TestList5();
-//	return 0;
-//}
+#define  _CRT_SECURE_NO_WARNINGS 1
+
+#include <stdio.h>
+#include <math.h>
+
+int Is_prime(int n) {
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (n % i == 0) {
+			return 0;
+		}
+	}
+	return 1;
+
+}
+
+int b[250][250] = { 0 };
+
+int main() {
+	int arr[60] = { 0 };
+	int a = 0;
+	for (int i = 2; i < 250; i++) {
+		if (Is_prime(i)) {
+			arr[a] = i;
+			a++;
+			if (a == 50)
+			{
+				break;
+			}
+		}
+	}
+
+	int n = 0;
+	while (scanf("%d", &n) != EOF) {
+			//1.右下为1  2.右上为2  3.左上为1  4.左下为2
+		if (n == 1) {
+			printf("11\n");
+			printf("\n");
+		}
+		if (n == 2) {
+			printf("02\n");
+			printf("02\n");
+			printf("02\n");
+			printf("11\n");
+			printf("\n");
+		}
+		if (n % 4 == 0) { //长度为arr[i]+1 宽度为arr[i-1]+1
+			int flag = n;
+			int flag1 = 0;
+			int mark1 = arr[flag - 1], mark2 = 0;
+
+			while (flag > 0) {
+				for (int i = mark1; i > mark1 - arr[flag - 1]; i--) { //第一竖行
+					b[i][mark2] = 2;
+					flag1 = i - 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i < arr[flag - 1] + mark2; i++) { //第一横行
+					b[mark1][i] = 1;
+					flag1 = i + 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i < arr[flag - 1] + mark1; i++) { //第二竖行
+					b[i][mark2] = 2;
+					flag1 = i + 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i > mark2 - arr[flag - 1]; i--) {	//第二横行
+
+					b[mark1][i] = 1;
+					flag1 = i - 1;
+				}
+				mark2 = flag1;
+				flag--;
+
+			}
+			for (int i = 0; i < arr[n - 1] + 1; i++) {
+				for (int j = 0; j < arr[n - 2] + 1; j++) {
+					printf("%d", b[i][j]);
+				}
+				printf("\n");
+			}
+			printf("\n");
+		}
+		else if (n % 4 == 1 && n != 1) {
+			int flag = n;
+			int flag1 = 0;
+			int mark1 = arr[flag - 2], mark2 = arr[flag - 1];
+
+			while (flag > 0) {
+				for (int i = mark2; i > mark2 - arr[flag - 1]; i--) { //第一横行
+					b[mark1][i] = 1;
+					flag1 = i - 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i > mark1 - arr[flag - 1]; i--) { //第一竖行
+					b[i][mark2] = 2;
+					flag1 = i - 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i < arr[flag - 1] + mark2; i++) { //第二横行
+					b[mark1][i] = 1;
+					flag1 = i + 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i < mark1 + arr[flag - 1]; i++) {	//第二竖行
+
+					b[i][mark2] = 2;
+					flag1 = i + 1;
+				}
+				mark1 = flag1;
+				flag--;
+
+			}
+			for (int i = 0; i < arr[n - 2] + 1; i++) {
+				for (int j = 0; j < arr[n - 1] + 1; j++) {
+					printf("%d", b[i][j]);
+				}
+				printf("\n");
+			}
+			printf("\n");
+		}
+
+		else if (n % 4 == 2 && n != 2) {
+			int flag = n;
+			int flag1 = 0;
+			int mark1 = 0, mark2 = arr[flag - 2];
+
+			while (flag > 0) {
+				for (int i = mark1; i < mark1 + arr[flag - 1]; i++) { //第一竖行
+					b[i][mark2] = 2;
+					flag1 = i + 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i > mark2 - arr[flag - 1]; i--) { //第一横行
+					b[mark1][i] = 1;
+					flag1 = i - 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i > mark1 - arr[flag - 1]; i--) { //第二竖行
+					b[i][mark2] = 2;
+					flag1 = i - 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i < mark2 + arr[flag - 1]; i++) {	//第二横行
+
+					b[mark1][i] = 1;
+					flag1 = i + 1;
+				}
+				mark2 = flag1;
+				flag--;
+
+			}
+			for (int i = 0; i < arr[n - 1] + 1; i++) {
+				for (int j = 0; j < arr[n - 2] + 1; j++) {
+					printf("%d", b[i][j]);
+				}
+				printf("\n");
+			}
+			printf("\n");
+		}
+		else if (n % 4 == 3) {
+			int flag = n;
+			int flag1 = 0;
+			int mark1 = 0, mark2 = 0;
+
+			while (flag > 0) {
+				for (int i = mark2; i < mark2 + arr[flag - 1]; i++) { //第一横行
+					b[mark1][i] = 1;
+					flag1 = i + 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i < mark1 + arr[flag - 1]; i++) { //第一竖行
+					b[i][mark2] = 2;
+					flag1 = i + 1;
+				}
+				mark1 = flag1;
+				flag--;
+				for (int i = mark2; i > mark2 - arr[flag - 1]; i--) { //第二横行
+					b[mark1][i] = 1;
+					flag1 = i - 1;
+				}
+				mark2 = flag1;
+				flag--;
+				for (int i = mark1; i > mark1 - arr[flag - 1]; i--) {	//第二竖行
+
+					b[i][mark2] = 2;
+					flag1 = i - 1;
+				}
+				mark1 = flag1;
+				flag--;
+
+			}
+			for (int i = 0; i < arr[n - 2] + 1; i++) {
+				for (int j = 0; j < arr[n - 1] + 1; j++) {
+					printf("%d", b[i][j]);
+				}
+				printf("\n");
+			}
+			printf("\n");
+		}
+
+	}
+	return 0;
+}
