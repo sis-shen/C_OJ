@@ -534,101 +534,124 @@
 //}
 
 //L1-025 ÕıÕûÊıA+B
-#include <stdio.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <string.h>
+//
+//int is_OK(char* str, int sz)
+//{
+//	if (sz > 4) return 0;
+//	if (str[0] > '1' && sz == 4) return 0;
+//	if (str[0] == '1' && sz == 4)
+//	{
+//		for (int i = 1; i < 4; i++)
+//		{
+//			if (str[i] > '0')return 0;
+//		}
+//	}
+//
+//	if (str[0] == '0') return 0;
+//
+//	for (int i = 0; i < sz; i++)
+//	{
+//		if (str[i] < '0' || str[i] > '9')
+//		{
+//			return 0;
+//		}
+//	}
+//	return 1;
+//}
+//
+//int  main()
+//{
+//
+//	char str[2000] = { 0 };
+//
+//
+//	char A[1200] = { 0 };
+//	char B[1200] = { 0 };
+//	if (!is_OK(A, strlen(A)))
+//	{
+//		A[0] = '?';
+//		A[1] = '\0';
+//	}
+//	if (!is_OK(B, strlen(B)))
+//	{
+//		B[0] = '?';
+//		B[1] = '\0';
+//	}
+//
+//	if (A[0] == '?' || B[0] == '?')
+//	{
+//		printf("%s + %s = ?", A, B);
+//	}
+//	else
+//	{
+//		char ret[1200] = { 0 };
+//		int curA = strlen(A) - 1;
+//		int curB = strlen(B) - 1;
+//		int cur = (curA > curB ? curA : curB) + 1;
+//		int flag = 0;
+//
+//		while(curA >=0 || curB >= 0 && cur>=0)
+//		{
+//			int sum = 0;
+//			if (curA < 0)
+//			{
+//				sum = B[curB--]-'0' + flag;
+//			}
+//			else if (curB < 0)
+//			{
+//				sum = A[curA--]-'0' + flag;
+//			}
+//			else
+//			{
+//				sum = A[curA--] - '0' + B[curB--] - '0' + flag;
+//			}
+//				if (sum >= 10)
+//				{
+//					flag = 1;
+//					sum %= 10;
+//				}
+//				else
+//				{
+//					flag = 0;
+//				}
+//				ret[cur--] = sum + '0';
+//		}
+//		if (flag)
+//		{
+//			ret[0] = '1';
+//		}
+//		if (ret[0] == 0)
+//		{
+//			printf("%s + %s = %s", A, B, ret + 1);
+//		}
+//		else
+//		{
+//			printf("%s + %s = %s", A, B, ret);
+//		}
+//	}
+//
+//	return 0;
+//}
 
-int is_OK(char* str, int sz)
+#include <iostream>
+using namespace std;
+
+int main()
 {
-	if (sz > 4) return 0;
-	if (str[0] > '1' && sz == 4) return 0;
-	if (str[0] == '1' && sz == 4)
+	int n = 0;
+	cin >> n;
+	for (int i = 0; i < n; i++)
 	{
-		for (int i = 1; i < 4; i++)
+		char name[20];
+		int num1, num2;
+		cin >> name;
+		cin >> num1;
+		cin >> num2;
+		if (num1 < 15 || num1 > 20 || num2 < 50 || num2>70)
 		{
-			if (str[i] > '0')return 0;
-		}
-	}
-
-	if (str[0] == '0') return 0;
-
-	for (int i = 0; i < sz; i++)
-	{
-		if (str[i] < '0' || str[i] > '9')
-		{
-			return 0;
-		}
-	}
-	return 1;
-}
-
-int  main()
-{
-
-	char str[2000] = { 0 };
-
-
-	char A[1200] = { 0 };
-	char B[1200] = { 0 };
-	if (!is_OK(A, strlen(A)))
-	{
-		A[0] = '?';
-		A[1] = '\0';
-	}
-	if (!is_OK(B, strlen(B)))
-	{
-		B[0] = '?';
-		B[1] = '\0';
-	}
-
-	if (A[0] == '?' || B[0] == '?')
-	{
-		printf("%s + %s = ?", A, B);
-	}
-	else
-	{
-		char ret[1200] = { 0 };
-		int curA = strlen(A) - 1;
-		int curB = strlen(B) - 1;
-		int cur = (curA > curB ? curA : curB) + 1;
-		int flag = 0;
-
-		while(curA >=0 || curB >= 0 && cur>=0)
-		{
-			int sum = 0;
-			if (curA < 0)
-			{
-				sum = B[curB--]-'0' + flag;
-			}
-			else if (curB < 0)
-			{
-				sum = A[curA--]-'0' + flag;
-			}
-			else
-			{
-				sum = A[curA--] - '0' + B[curB--] - '0' + flag;
-			}
-				if (sum >= 10)
-				{
-					flag = 1;
-					sum %= 10;
-				}
-				else
-				{
-					flag = 0;
-				}
-				ret[cur--] = sum + '0';
-		}
-		if (flag)
-		{
-			ret[0] = '1';
-		}
-		if (ret[0] == 0)
-		{
-			printf("%s + %s = %s", A, B, ret + 1);
-		}
-		else
-		{
-			printf("%s + %s = %s", A, B, ret);
+			cout << name << endl;
 		}
 	}
 
