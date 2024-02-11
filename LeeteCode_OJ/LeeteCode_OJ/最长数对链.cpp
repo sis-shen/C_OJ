@@ -1,6 +1,7 @@
 #define  _CRT_SECURE_NO_WARNINGS 1
 
 #include "myhead.h"
+using namespace std;
 
 
 class Solution {
