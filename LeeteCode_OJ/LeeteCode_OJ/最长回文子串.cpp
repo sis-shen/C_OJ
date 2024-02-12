@@ -31,12 +31,12 @@ public:
     }
 };
 
-int main()
-{
-    Solution sl;
-    string str("aabbcd");
-
-    cout << sl.longestPalindrome(str);
-
-    return 0;
-}
+//int main()
+//{
+//    Solution sl;
+//    string str("aabbcd");
+//
+//    cout << sl.longestPalindrome(str);
+//
+//    return 0;
+//}
