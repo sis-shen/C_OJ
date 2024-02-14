@@ -27,12 +27,12 @@ public:
     }
 };
 
-int main()
-{
-    string s("rabbbt");
-    string t("rabit");
-
-    Solution().numDistinct(s, t);
-
-    return 0;
-}
+//int main()
+//{
+//    string s("rabbbt");
+//    string t("rabit");
+//
+//    Solution().numDistinct(s, t);
+//
+//    return 0;
+//}
