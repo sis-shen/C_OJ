@@ -127,6 +127,7 @@ void complete_bag()
 
 void complete_bag2()
 {
+	int dp[N];
 	memset(dp, 0, sizeof(dp));
 	cin >> n >> V;
 	for (int i = 1; i <= n; i++)
@@ -134,17 +135,16 @@ void complete_bag2()
 		cin >> v[i] >> w[i];
 	}
 
-	for (int j = 1; j <= V; j++)dp[0][j] = -1;
+	for (int j = 1; j <= V; j++)dp[j] = -0x3f3f3f3f;
 
 	for (int i = 1; i <= n; i++)
 	{
-		for (int j = 0; j <= V; j++)
+		for (int j = v[i]; j <= V; j++)
 		{
-			dp[i][j] = dp[i - 1][j];
-			if (j >= v[i] and dp[i][j-v[i] != -1])dp[i][j] = max(dp[i][j], dp[i][j - v[i] + w[i]]);
+			dp[j] = max(dp[j], dp[j - v[i] + w[i]]);
 		}
 	}
 
-	cout << (dp[n][V] == -1 ? 0:dp[n][V]) << endl;
+	cout << (dp[V] <0 ? 0:dp[V]) << endl;
 }
 
