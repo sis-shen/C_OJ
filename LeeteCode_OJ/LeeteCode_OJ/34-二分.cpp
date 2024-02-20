@@ -32,9 +32,9 @@ public:
     }
 };
 
-int main()
-{
-    Solution sl;
-    auto arr = sl.searchRange({ 5,7,7,8,8,10 }, 8);
-    return 0;
-}
+//int main()
+//{
+//    Solution sl;
+//    auto arr = sl.searchRange({ 5,7,7,8,8,10 }, 8);
+//    return 0;
+//}
