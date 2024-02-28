@@ -39,41 +39,59 @@
 //	return 0;
 //}
 
+//
+//struct Node
+//{
+//	Node(int n)
+//		:val(n)
+//		,next(nullptr)
+//	{
+//
+//	}
+//	Node* next;
+//	int val = 0;
+//};
+//
+//int LastK(Node* head, int k)
+//{
+//	Node* newHead = new Node(0);
+//	Node* cur = head;
+//	while (cur)
+//	{
+//		Node* next = cur->next;
+//		cur->next = head->next;
+//		head->next = cur;
+//		cur = next;
+//	}
+//	cur = newHead;
+//	for (int i = 0; i < k; i++)
+//	{
+//		if (cur == nullptr) 
+//		{
+//			delete newHead;
+//			return -1;//链表不够长
+//		}
+//		cur = cur->next;
+//	}
+//
+//	delete newHead;
+//	return cur->val;
+//}
 
-struct Node
+#include <iostream>
+using namespace std;
+
+
+int main()
 {
-	Node(int n)
-		:val(n)
-		,next(nullptr)
+	int n = 1;
+	switch (1)
 	{
+	default:
+		cout << "default";
+	case 1:
+		cout << "1 ";
 
 	}
-	Node* next;
-	int val = 0;
-};
-
-int LastK(Node* head, int k)
-{
-	Node* newHead = new Node(0);
-	Node* cur = head;
-	while (cur)
-	{
-		Node* next = cur->next;
-		cur->next = head->next;
-		head->next = cur;
-		cur = next;
-	}
-	cur = newHead;
-	for (int i = 0; i < k; i++)
-	{
-		if (cur == nullptr) 
-		{
-			delete newHead;
-			return -1;//链表不够长
-		}
-		cur = cur->next;
-	}
-
-	delete newHead;
-	return cur->val;
+	return 0;
 }
