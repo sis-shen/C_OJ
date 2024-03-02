@@ -84,14 +84,13 @@ using namespace std;
 
 int main()
 {
-	int n = 1;
-	switch (1)
+	int x = -1;
+	int cnt = 0;
+	while (x)
 	{
-	default:
-		cout << "default";
-	case 1:
-		cout << "1 ";
-
+		cnt++;
+		x = x & (x - 1);
 	}
+	cout << cnt;
 	return 0;
 }
