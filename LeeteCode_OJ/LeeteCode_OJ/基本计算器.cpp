@@ -106,120 +106,120 @@ using namespace std;
 
 
 
-
-//递归版本
-class Solution {
-public:
-    int calculate(string s) {
-        int pos = 0;
-        return _calculate(s, pos);
-    }
-
-    void STpop(stack<int>& STint, stack<char>&STchar)
-    {
-        char op = STchar.top();
-        STchar.pop();
-
-        int back = STint.top();
-        STint.pop();
-        int front = STint.top();
-        STint.pop();
-
-        int result = 0;
-        switch(op)
-        {
-        case '+':
-            result = front + back; break;
-        case '-':
-            result = front - back; break;
-        case '*':
-            result = front * back; break;
-        case '/':
-            result = front / back; break;
-        }
-
-        STint.push(result);
-    }
-
-    bool Priority(char top, char cur)//规定出栈优先级
-    {
-        if ((top == '+' or top == '-') and (cur == '+' or cur == '-'))
-            return true;
-        else if ((top == '*' or top == '/') and (cur == '*' or cur == '/' or cur == '+' or cur == '-'))
-            return true;
-        else
-            return false;
-    }
-
-    int _calculate(string& s, int& pos)
-    {
-        stack<int> STint;
-        stack<char> STchar;
-        while (pos < s.size())//操作数
-        {
-            if ('0' <= s[pos] and s[pos] <= '9')
-            {
-                int num = 0;
-                while ('0' <= s[pos] and s[pos] <= '9' and pos<s.size())
-                {
-                    num = num * 10 + (s[pos] - '0');
-                    pos++;
-                }
-                STint.push(num);
-            }
-            else if (s[pos] == ' ')
-                pos++;
-            else
-            {
-                if (s[pos] == '(')//括号
-                {
-                    int num = _calculate(s,++pos);
-                    STint.push(num);
-                }
-                else if (s[pos] == ')')//括号
-                {
-                    ++pos;
-                    while (!STchar.empty())
-                    {
-                        STpop(STint, STchar);
-                    }
-                    return STint.top();
-                }
-                else//四种操作符
-                {
-                    if (STchar.empty())
-                    {
-                        if (STint.empty() and s[pos] == '-')
-                            STint.push(0);
-                        STchar.push(s[pos]);
-                        pos++;
-                    }
-                    else if (Priority(STchar.top(), s[pos]))
-                    {
-                        STpop(STint, STchar);
-                        STchar.push(s[pos]);
-                        pos++;
-                    }
-                    else
-                        STchar.push(s[pos++]);
-                }
-            }
-        }
-
-        while (!STchar.empty())
-        {
-            STpop(STint, STchar);
-        }
-
-        return STint.top();
-    }
-};
-
-
-int main()
-{
-    Solution sl;
-    int n = sl.calculate(" -2 - 1 + 2");
-    cout << n;
-    return 0;
-}
+//
+////递归版本
+//class Solution {
+//public:
+//    int calculate(string s) {
+//        int pos = 0;
+//        return _calculate(s, pos);
+//    }
+//
+//    void STpop(stack<int>& STint, stack<char>&STchar)
+//    {
+//        char op = STchar.top();
+//        STchar.pop();
+//
+//        int back = STint.top();
+//        STint.pop();
+//        int front = STint.top();
+//        STint.pop();
+//
+//        int result = 0;
+//        switch(op)
+//        {
+//        case '+':
+//            result = front + back; break;
+//        case '-':
+//            result = front - back; break;
+//        case '*':
+//            result = front * back; break;
+//        case '/':
+//            result = front / back; break;
+//        }
+//
+//        STint.push(result);
+//    }
+//
+//    bool Priority(char top, char cur)//规定出栈优先级
+//    {
+//        if ((top == '+' or top == '-') and (cur == '+' or cur == '-'))
+//            return true;
+//        else if ((top == '*' or top == '/') and (cur == '*' or cur == '/' or cur == '+' or cur == '-'))
+//            return true;
+//        else
+//            return false;
+//    }
+//
+//    int _calculate(string& s, int& pos)
+//    {
+//        stack<int> STint;
+//        stack<char> STchar;
+//        while (pos < s.size())//操作数
+//        {
+//            if ('0' <= s[pos] and s[pos] <= '9')
+//            {
+//                int num = 0;
+//                while ('0' <= s[pos] and s[pos] <= '9' and pos<s.size())
+//                {
+//                    num = num * 10 + (s[pos] - '0');
+//                    pos++;
+//                }
+//                STint.push(num);
+//            }
+//            else if (s[pos] == ' ')
+//                pos++;
+//            else
+//            {
+//                if (s[pos] == '(')//括号
+//                {
+//                    int num = _calculate(s,++pos);
+//                    STint.push(num);
+//                }
+//                else if (s[pos] == ')')//括号
+//                {
+//                    ++pos;
+//                    while (!STchar.empty())
+//                    {
+//                        STpop(STint, STchar);
+//                    }
+//                    return STint.top();
+//                }
+//                else//四种操作符
+//                {
+//                    if (STchar.empty())
+//                    {
+//                        if (STint.empty() and s[pos] == '-')
+//                            STint.push(0);
+//                        STchar.push(s[pos]);
+//                        pos++;
+//                    }
+//                    else if (Priority(STchar.top(), s[pos]))
+//                    {
+//                        STpop(STint, STchar);
+//                        STchar.push(s[pos]);
+//                        pos++;
+//                    }
+//                    else
+//                        STchar.push(s[pos++]);
+//                }
+//            }
+//        }
+//
+//        while (!STchar.empty())
+//        {
+//            STpop(STint, STchar);
+//        }
+//
+//        return STint.top();
+//    }
+//};
+//
+//
+//int main()
+//{
+//    Solution sl;
+//    int n = sl.calculate(" -2 - 1 + 2");
+//    cout << n;
+//    return 0;
+//}

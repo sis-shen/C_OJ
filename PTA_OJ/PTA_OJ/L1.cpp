@@ -635,25 +635,135 @@
 //	return 0;
 //}
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
+//
+//int main()
+//{
+//	int n = 0;
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//	{
+//		char name[20];
+//		int num1, num2;
+//		cin >> name;
+//		cin >> num1;
+//		cin >> num2;
+//		if (num1 < 15 || num1 > 20 || num2 < 50 || num2>70)
+//		{
+//			cout << name << endl;
+//		}
+//	}
+//
+//	return 0;
+//}
 
+
+
+//#include <iostream>
+//#include <vector>
+//#include <string>
+//using namespace std;
+//
+//struct person
+//{
+//    person(string& name)
+//        :_name(name)
+//        , _cnt(0)
+//    {
+//        ;
+//    };
+//    string _name;
+//    int _cnt;
+//};
+//
+//int main()
+//{
+//    int N = 0;
+//    cin >> N;
+//    vector<person> arr;
+//    for (int i = 0; i < N; i++)
+//    {
+//        int n = 0;
+//        cin >> n;
+//        while (n--)
+//        {
+//            string name;
+//            int cur = 0;
+//            cin >> name;
+//            while (cur < arr.size())
+//            {
+//                if (arr[cur]._name == name)
+//                {
+//                    arr[cur]._cnt++;
+//                    break;
+//                }
+//                cur++;
+//            }
+//            if (cur == arr.size()) arr.push_back(person(name));
+//        }
+//    }
+//
+//    vector<string> ret;
+//    for (auto p : arr)
+//    {
+//        if (p._cnt == 1) ret.push_back(p._name);
+//    }
+//
+//    if (ret.size() == 0) cout << "No one is handsome";
+//    else
+//    {
+//        for (auto name : ret)
+//            cout << name << " ";
+//    }
+//}
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unordered_map>
+using namespace std;
 int main()
 {
-	int n = 0;
-	cin >> n;
-	for (int i = 0; i < n; i++)
+	unordered_map<string, int> hash;
+	int N = 0;
+	cin >> N;
+	while (N--)
 	{
-		char name[20];
-		int num1, num2;
-		cin >> name;
-		cin >> num1;
-		cin >> num2;
-		if (num1 < 15 || num1 > 20 || num2 < 50 || num2>70)
+		int n = 0;
+		cin >> n;
+		unordered_map<string, int> tmp;
+		for(int i =0;i<n;i++)
 		{
-			cout << name << endl;
+			string name;
+			cin >> name;
+			if (!tmp.count(name))hash[name] += n - 1;
+			else hash[name]--;
+			tmp[name]++;
 		}
 	}
+	
+	int n = 0;
+	cin >> n;
+	vector<string> arr(n);
+	for (int i = 0; i < n; i++) cin >> arr[i];
+	vector<string> ret;
 
+
+	for (auto name : arr)
+	{
+		if (!hash.count(name) or hash[name] == 0)
+		{
+			ret.push_back(name);
+			hash[name] = -1;
+		}
+	}
+	if (ret.size() == 0) cout << "No one is handsome";
+	else
+		for (int i = 0; i < ret.size(); i++)
+		{
+			if (i) cout << " ";
+			cout << ret[i];
+		}
 	return 0;
 }
