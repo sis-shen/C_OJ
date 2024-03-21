@@ -223,3 +223,84 @@ using namespace std;
 //    cout << n;
 //    return 0;
 //}
+
+
+class Solution {
+public:
+    stack<int> stInt;
+    stack<char> stChar;
+
+    void op()
+    {
+        char ch = stChar.top();
+        stChar.pop();
+
+        int back = stInt.top();
+        stInt.pop();
+
+        int front = stInt.top();
+        stInt.pop();
+
+        int ret;
+        switch (ch)
+        {
+        case '+': ret = front + back; break;
+        case '-': ret = front - back; break;
+        case '*': ret = front * back; break;
+        case '/': ret = front / back; break;
+        }
+        stInt.push(ret);
+    }
+
+    bool checkPriority(char ch)
+    {
+        if ((ch == '*' or ch == '/') and (stChar.top() == '+' or stChar.top() == '-'))
+            return true;
+        else return false;
+    }
+
+    int calculate(string s) {
+        int cur = 0;
+        while (cur < s.size())
+        {
+            if (s[cur] == ' ') cur++;
+            else if ('0' <= s[cur] and s[cur] <= '9')
+            {
+                int num = 0;
+                while (cur < s.size() and '0' <= s[cur] and s[cur] <= '9')
+                {
+                    num = num * 10 - '0' + s[cur++];
+                }
+                stInt.push(num);
+            }
+            else
+            {
+                if (stChar.empty()) stChar.push(s[cur++]);
+                else
+                {
+                    if (checkPriority(s[cur])) stChar.push(s[cur++]);
+                    else
+                    {
+                        op();
+                    }
+                }
+            }
+        }
+
+        while (!stChar.empty())
+        {
+            op();
+        }
+        return stInt.top();
+    }
+};
+
+int main()
+{
+    string s("1*2-3/4+5*6-7*8+9/10");
+    Solution sl;
+    int ret = sl.calculate(s);
+    cout << ret;
+
+    return 0;
+}
